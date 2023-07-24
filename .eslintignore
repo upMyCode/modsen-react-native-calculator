@@ -1,0 +1,5 @@
+node_modules
+ios
+vendor
+android
+__tests__
