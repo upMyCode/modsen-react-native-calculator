@@ -1,17 +1,28 @@
 module.exports = {
   root: true,
+  extends: [
+    '@react-native-community',
+    'airbnb-typescript',
+    'prettier',
+    'prettier/@typescript-eslint',
+    'prettier/react',
+  ],
   settings: {
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
     'import/resolver': {
-      node: {
+      typescript: {},
+      alias: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        map: [
+          ['@components', './components'],
+          ['@screens', './screens/'],
+        ],
       },
     },
   },
-  extends: 'airbnb',
   plugins: [
     'react',
     'react-native',
