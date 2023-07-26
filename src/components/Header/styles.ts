@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-const Wrapper = styled.View`
+const Wrapper = styled.SafeAreaView`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 const Info = styled.Text`
@@ -13,16 +14,12 @@ const Info = styled.Text`
   line-height: 36px;
   margin-left: 34px;
   margin-top: 33px;
-`;
-
-const ManageSettingsImg = styled.Image`
-  width: 32px;
-  height: 32px;
-  margin-right: 13px;
+  font-family: Poppins-Regular;
 `;
 
 const ManageSettingsButton = styled.Pressable`
   margin-top: 36px;
-  margin-left: 59px;
+  margin-right: 13px;
 `;
-export { Info, Wrapper, ManageSettingsImg, ManageSettingsButton };
+
+export { Info, Wrapper, ManageSettingsButton };

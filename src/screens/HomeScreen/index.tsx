@@ -1,14 +1,14 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Wrapper } from './styles';
 import { Header } from 'root';
 import { Calculator } from 'root';
 
 const HomeScreen = (): JSX.Element => {
   return (
-    <View>
+    <Wrapper>
       <Header />
       <Calculator />
-    </View>
+    </Wrapper>
   );
 };
 

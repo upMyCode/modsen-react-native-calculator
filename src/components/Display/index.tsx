@@ -1,8 +1,12 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
 
 const Display = (): JSX.Element => {
-  return <Text>This is Display</Text>;
+  return (
+    <View>
+      <Text>This is Display</Text>
+    </View>
+  );
 };
 
 export default Display;
