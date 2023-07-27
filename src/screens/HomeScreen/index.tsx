@@ -1,15 +1,18 @@
 import React from 'react';
-import { Wrapper } from './styles';
-import { Header } from 'root';
 import { Calculator } from 'root';
 
-const HomeScreen = (): JSX.Element => {
+import { Settings } from '../../assets';
+import DefaultScreen from '../DefaultScreen';
+import Wrapper from './styles';
+
+function HomeScreen(): JSX.Element {
   return (
     <Wrapper>
-      <Header />
-      <Calculator />
+      <DefaultScreen title="Modsen Calculator" icons={[Settings]}>
+        <Calculator />
+      </DefaultScreen>
     </Wrapper>
   );
-};
+}
 
 export default HomeScreen;

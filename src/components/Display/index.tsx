@@ -1,12 +1,18 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 
-const Display = (): JSX.Element => {
+import Wrapper from './styles';
+
+interface DisplayProps {
+  expression: string;
+}
+
+function Display({ expression }: DisplayProps): JSX.Element {
   return (
-    <View>
-      <Text>This is Display</Text>
-    </View>
+    <Wrapper>
+      <Text>{expression}</Text>
+    </Wrapper>
   );
-};
+}
 
 export default Display;

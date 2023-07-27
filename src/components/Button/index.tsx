@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListRenderItem } from 'react-native';
+
 import { CalculatorButton, TextContent } from './styles';
 
 interface ButtonProps {
@@ -10,9 +10,10 @@ interface ButtonProps {
   height: string;
   width: string;
   radius: string;
+  size: string;
 }
 
-const Button = ({
+function Button({
   title,
   onPress,
   bgColor,
@@ -20,7 +21,8 @@ const Button = ({
   height,
   width,
   radius,
-}: ButtonProps): JSX.Element => {
+  size,
+}: ButtonProps): JSX.Element {
   return (
     <CalculatorButton
       onPress={onPress}
@@ -29,9 +31,11 @@ const Button = ({
       height={height}
       radius={radius}
     >
-      <TextContent textColor={textColor}>{title}</TextContent>
+      <TextContent size={size} textColor={textColor}>
+        {title}
+      </TextContent>
     </CalculatorButton>
   );
-};
+}
 
 export default Button;

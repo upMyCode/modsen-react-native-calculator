@@ -1,8 +1,3 @@
-import React from 'react';
-import { Wrapper, KeyCupContainer, KeyCupListItem } from './styles';
-import { Alert, View, FlatList } from 'react-native';
-import { Button } from 'root';
-
 import {
   KEY_CUPS_BLOCK_1,
   KEY_CUPS_BLOCK_2,
@@ -11,89 +6,153 @@ import {
   KEY_CUPS_BLOCK_5,
   KEY_CUPS_BLOCK_6,
   KEY_CUPS_BLOCK_7,
+  KEY_CUPS_BLOCK_8,
+  KEY_CUPS_BLOCK_9,
+  KEY_CUPS_BLOCK_10,
 } from 'constants/keyCups';
+import React from 'react';
+import { FlatList, View } from 'react-native';
+import { Button } from 'root';
 
-const Keypad = (): JSX.Element => {
+import {
+  KeyCupContainer,
+  KeyCupContainerBottom,
+  KeyCupContainerNumbers,
+  KeyCupContainerTop,
+  KeyCupListItem,
+  KeyCupListItemNumbers,
+  KeyCupListItemRightSideFirstGroup,
+  KeyCupListItemRightSideSecondGroup,
+  Wrapper,
+} from './styles';
+
+interface KeypadProps {
+  handleSetMathExpression: (key: string) => void;
+}
+
+function Keypad({ handleSetMathExpression }: KeypadProps): JSX.Element {
   return (
     <Wrapper>
-      <KeyCupContainer>
+      <KeyCupContainerTop>
         <FlatList
           data={KEY_CUPS_BLOCK_1}
           numColumns={4}
-          keyExtractor={item => item.id}
+          keyExtractor={({ id }) => id}
           renderItem={({ item }) => (
             <KeyCupListItem>
               <Button
                 title={item.title}
-                onPress={() => Alert.alert('Modal has been closed.')}
+                onPress={() => handleSetMathExpression(item.title)}
                 bgColor="#FFFFFF"
                 textColor="#109DFF"
                 radius="24"
                 width="62"
                 height="40"
+                size="18"
               />
             </KeyCupListItem>
           )}
         />
-      </KeyCupContainer>
+      </KeyCupContainerTop>
       <KeyCupContainer>
         <View>
           <KeyCupContainer>
             <FlatList
               data={KEY_CUPS_BLOCK_2}
-              numColumns={3}
-              keyExtractor={item => item.id}
+              numColumns={1}
+              keyExtractor={({ id }) => id}
               renderItem={({ item }) => (
                 <KeyCupListItem>
                   <Button
                     title={item.title}
-                    onPress={() => Alert.alert('Modal has been closed.')}
+                    onPress={() => handleSetMathExpression(item.title)}
                     bgColor="#FFFFFF"
-                    textColor="#109DFF"
+                    textColor="#858585"
                     radius="16"
                     width="62"
                     height="62"
+                    size="32"
                   />
                 </KeyCupListItem>
               )}
             />
-          </KeyCupContainer>
-          <KeyCupContainer>
             <FlatList
               data={KEY_CUPS_BLOCK_3}
-              numColumns={3}
-              keyExtractor={item => item.id}
+              numColumns={1}
+              keyExtractor={({ id }) => id}
               renderItem={({ item }) => (
                 <KeyCupListItem>
                   <Button
                     title={item.title}
-                    onPress={() => Alert.alert('Modal has been closed.')}
+                    onPress={() => handleSetMathExpression(item.title)}
                     bgColor="#FFFFFF"
+                    textColor="#858585"
+                    radius="16"
+                    width="62"
+                    height="62"
+                    size="22"
+                  />
+                </KeyCupListItem>
+              )}
+            />
+            <FlatList
+              data={KEY_CUPS_BLOCK_4}
+              numColumns={1}
+              keyExtractor={({ id }) => id}
+              renderItem={({ item }) => (
+                <KeyCupListItem>
+                  <Button
+                    title={item.title}
+                    onPress={() => handleSetMathExpression(item.title)}
+                    bgColor="#ADE2FF"
                     textColor="#109DFF"
                     radius="16"
                     width="62"
                     height="62"
+                    size="32"
                   />
                 </KeyCupListItem>
               )}
             />
           </KeyCupContainer>
-          <KeyCupContainer>
+          <KeyCupContainerNumbers>
+            <FlatList
+              data={KEY_CUPS_BLOCK_5}
+              numColumns={3}
+              keyExtractor={({ id }) => id}
+              renderItem={({ item }) => (
+                <KeyCupListItemNumbers>
+                  <Button
+                    title={item.title}
+                    onPress={() => handleSetMathExpression(item.title)}
+                    bgColor="#FFFFFF"
+                    textColor="#38B9FF"
+                    radius="16"
+                    width="62"
+                    height="62"
+                    size="32"
+                  />
+                </KeyCupListItemNumbers>
+              )}
+            />
+          </KeyCupContainerNumbers>
+          <KeyCupContainerBottom>
             <View>
               <FlatList
-                data={KEY_CUPS_BLOCK_6}
+                data={KEY_CUPS_BLOCK_9}
                 numColumns={1}
-                keyExtractor={item => item.id}
+                keyExtractor={({ id }) => id}
                 renderItem={({ item }) => (
                   <KeyCupListItem>
                     <Button
                       title={item.title}
-                      onPress={() => Alert.alert('Modal has been closed.')}
+                      onPress={() => handleSetMathExpression(item.title)}
                       bgColor="#FFFFFF"
                       textColor="#109DFF"
                       radius="16"
                       width="144"
                       height="60"
+                      size="32"
                     />
                   </KeyCupListItem>
                 )}
@@ -101,62 +160,83 @@ const Keypad = (): JSX.Element => {
             </View>
             <View>
               <FlatList
-                data={KEY_CUPS_BLOCK_7}
+                data={KEY_CUPS_BLOCK_10}
                 numColumns={1}
-                keyExtractor={item => item.id}
+                keyExtractor={({ id }) => id}
                 renderItem={({ item }) => (
                   <KeyCupListItem>
                     <Button
                       title={item.title}
-                      onPress={() => Alert.alert('Modal has been closed.')}
+                      onPress={() => handleSetMathExpression(item.title)}
                       bgColor="#FFFFFF"
-                      textColor="#109DFF"
+                      textColor="#38B9FF"
                       radius="16"
                       width="62"
                       height="62"
+                      size="32"
                     />
                   </KeyCupListItem>
                 )}
               />
             </View>
-          </KeyCupContainer>
+          </KeyCupContainerBottom>
         </View>
         <View>
           <View>
             <FlatList
-              data={KEY_CUPS_BLOCK_4}
-              keyExtractor={item => item.id}
+              data={KEY_CUPS_BLOCK_6}
+              keyExtractor={({ id }) => id}
               renderItem={({ item }) => (
-                <KeyCupListItem>
+                <KeyCupListItemRightSideFirstGroup>
                   <Button
                     title={item.title}
-                    onPress={() => Alert.alert('Modal has been closed.')}
-                    bgColor="#FFFFFF"
+                    onPress={() => handleSetMathExpression(item.title)}
+                    bgColor="#ADE2FF"
                     textColor="#109DFF"
                     radius="16"
                     width="62"
                     height="64"
+                    size="32"
                   />
-                </KeyCupListItem>
+                </KeyCupListItemRightSideFirstGroup>
               )}
             />
           </View>
           <View>
             <FlatList
-              data={KEY_CUPS_BLOCK_5}
-              keyExtractor={item => item.id}
+              data={KEY_CUPS_BLOCK_7}
+              keyExtractor={({ id }) => id}
               renderItem={({ item }) => (
-                <KeyCupListItem>
+                <KeyCupListItemRightSideSecondGroup>
                   <Button
                     title={item.title}
-                    onPress={() => Alert.alert('Modal has been closed.')}
-                    bgColor="#FFFFFF"
+                    onPress={() => handleSetMathExpression(item.title)}
+                    bgColor="#ADE2FF"
                     textColor="#109DFF"
                     radius="16"
                     width="62"
                     height="96"
+                    size="32"
                   />
-                </KeyCupListItem>
+                </KeyCupListItemRightSideSecondGroup>
+              )}
+            />
+            <FlatList
+              data={KEY_CUPS_BLOCK_8}
+              keyExtractor={({ id }) => id}
+              renderItem={({ item }) => (
+                <KeyCupListItemRightSideSecondGroup>
+                  <Button
+                    title={item.title}
+                    onPress={() => handleSetMathExpression(item.title)}
+                    bgColor="#1991FF"
+                    textColor="#B2DAFF"
+                    radius="16"
+                    width="62"
+                    height="96"
+                    size="32"
+                  />
+                </KeyCupListItemRightSideSecondGroup>
               )}
             />
           </View>
@@ -164,6 +244,6 @@ const Keypad = (): JSX.Element => {
       </KeyCupContainer>
     </Wrapper>
   );
-};
+}
 
 export default Keypad;

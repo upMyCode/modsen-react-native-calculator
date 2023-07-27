@@ -1,11 +1,10 @@
 module.exports = {
   root: true,
   extends: [
-    '@react-native-community',
-    'airbnb-typescript',
-    'prettier',
-    'prettier/@typescript-eslint',
-    'prettier/react',
+    'airbnb-typescript/base',
+    'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'airbnb',
   ],
   settings: {
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
@@ -32,8 +31,16 @@ module.exports = {
     'import',
     'simple-import-sort',
     'prettier',
+    '@typescript-eslint',
   ],
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
   env: {
     jest: true,
     'react-native/react-native': true,
@@ -55,6 +62,9 @@ module.exports = {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'prettier/prettier': 'error',
+    'import/no-cycle': 'off',
+    '@typescript-eslint/no-var-requires': 0,
+    'arrow-parens': ['error', 'as-needed'],
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -69,5 +79,15 @@ module.exports = {
   },
   globals: {
     fetch: false,
+    React: true,
+    google: true,
+    mount: true,
+    mountWithRouter: true,
+    shallow: true,
+    shallowWithRouter: true,
+    context: true,
+    expect: true,
+    jsdom: true,
+    JSX: true,
   },
 };
