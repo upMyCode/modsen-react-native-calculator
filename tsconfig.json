@@ -17,6 +17,7 @@
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "lib": ["dom", "esnext"],
+    "typeRoots": ["node_modules/@types", "src/types"],
     "allowJs": true,
     "jsx": "react-native",
     "isolatedModules": true,

@@ -1,6 +1,6 @@
 import { DISPLAYED_KEY_CUPS, UN_DISPLAYED_KEY_CUPS } from 'constants/keyCups';
 import React, { useState } from 'react';
-import { Display, Keypad } from 'root';
+import { Display, Keypad } from 'src/index';
 
 import Wrapper from './styles';
 

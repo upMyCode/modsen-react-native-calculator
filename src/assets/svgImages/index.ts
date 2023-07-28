@@ -1,5 +1,8 @@
-import Bin from './Bin.svg';
-import Moon from './Moon.svg';
-import Settings from './Settings.svg';
+import BinDark from './BinDark.svg';
+import BinLight from './BinLight.svg';
+import MoonDark from './MoonDark.svg';
+import MoonLight from './MoonLight.svg';
+import SettingsDark from './SettingsDark.svg';
+import SettingsLight from './SettingsLight.svg';
 
-export { Bin, Moon, Settings };
+export { BinDark, BinLight, MoonDark, MoonLight, SettingsDark, SettingsLight };

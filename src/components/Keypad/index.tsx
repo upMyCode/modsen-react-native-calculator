@@ -12,7 +12,7 @@ import {
 } from 'constants/keyCups';
 import React from 'react';
 import { FlatList, View } from 'react-native';
-import { Button } from 'root';
+import { Button } from 'src/index';
 
 import {
   KeyCupContainer,

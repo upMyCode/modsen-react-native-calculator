@@ -24,7 +24,7 @@ const CalculatorButton = styled.TouchableOpacity<CalculatorButtonProps>`
 const TextContent = styled.Text<TextContentProps>`
   color: ${({ textColor }) => textColor};
   font-size: ${({ size }) => `${size}px`};
-  font-weight: 500;
+  font-family: 'Poppins-Medium';
 `;
 
 export { CalculatorButton, TextContent };
