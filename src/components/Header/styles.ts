@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components/native';
 
 const Wrapper = styled.SafeAreaView`
@@ -17,9 +16,11 @@ const Info = styled.Text`
   font-family: Poppins-Regular;
 `;
 
-const ManageSettingsButton = styled.Pressable`
+const ManageSettingsContainer = styled.View`
+  display: flex;
+  flex-direction: row;
   margin-top: 36px;
   margin-right: 13px;
 `;
 
-export { Info, Wrapper, ManageSettingsButton };
+export { Info, ManageSettingsContainer, Wrapper };

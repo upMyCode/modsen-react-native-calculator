@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components/native';
 
 interface CalculatorButtonProps {
@@ -7,9 +6,9 @@ interface CalculatorButtonProps {
   height: string;
   radius: string;
 }
-
 interface TextContentProps {
   textColor: string;
+  size: string;
 }
 
 const CalculatorButton = styled.TouchableOpacity<CalculatorButtonProps>`
@@ -17,15 +16,14 @@ const CalculatorButton = styled.TouchableOpacity<CalculatorButtonProps>`
   align-items: center;
   justify-content: center;
   background-color: ${({ bgColor }) => bgColor};
-  width: ${({ width }) => width + 'px'};
-  height: ${({ height }) => height + 'px'};
-  border-radius: ${({ radius }) => radius + 'px'};
+  width: ${({ width }) => `${width}px`};
+  height: ${({ height }) => `${height}px`};
+  border-radius: ${({ radius }) => `${radius}px`};
 `;
 
 const TextContent = styled.Text<TextContentProps>`
   color: ${({ textColor }) => textColor};
-  font-size: 32px;
-  line-height: 48px;
+  font-size: ${({ size }) => `${size}px`};
   font-weight: 500;
 `;
 
