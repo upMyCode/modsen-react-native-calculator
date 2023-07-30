@@ -1,18 +1,9 @@
 import React from 'react';
-import { Image, ImageSourcePropType, Pressable } from 'react-native';
+import { Image, Pressable } from 'react-native';
 import { useAppSelector } from 'src/store/hooks';
 
 import { Info, ManageIcon, ManageSettingsContainer, Wrapper } from './styles';
-
-interface Icons {
-  Icon: ImageSourcePropType;
-  onPress: () => void;
-  id: string;
-}
-interface HeaderProps {
-  title: string;
-  icons: Icons[];
-}
+import type { HeaderProps, Icons } from './types';
 
 function Header({ title, icons }: HeaderProps): JSX.Element {
   const { theme } = useAppSelector(state => state.themeReducer);

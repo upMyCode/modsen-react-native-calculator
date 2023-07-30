@@ -1,20 +1,14 @@
 import { useNavigation } from '@react-navigation/core';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
-import { ImageSourcePropType } from 'react-native';
-import { Calculator } from 'src/index';
+import { Calculator } from 'root';
 import { useAppSelector } from 'src/store/hooks';
 
 import { RootStackParams } from '../../../App';
 import { SettingsBlack, SettingsLight } from '../../assets';
 import DefaultScreen from '../DefaultScreen';
 import Wrapper from './styles';
-
-interface Icons {
-  Icon: ImageSourcePropType;
-  onPress: () => void;
-  id: string;
-}
+import type Icons from './types';
 
 function HomeScreen(): JSX.Element {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();

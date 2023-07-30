@@ -2,10 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 
 import Wrapper from './styles';
-
-interface DisplayProps {
-  expression: string;
-}
+import type DisplayProps from './types';
 
 function Display({ expression }: DisplayProps): JSX.Element {
   return (

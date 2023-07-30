@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, ImageSourcePropType } from 'react-native';
+import { Alert } from 'react-native';
 import { History } from 'src/index';
 import { themeSlice } from 'src/reducers/themeReducer';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
@@ -7,12 +7,7 @@ import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { BinBlack, BinLight, MoonBlack, MoonLight } from '../../assets';
 import DefaultScreen from '../DefaultScreen';
 import Wrapper from './styles';
-
-interface Icons {
-  Icon: ImageSourcePropType;
-  onPress: () => void;
-  id: string;
-}
+import type Icons from './types';
 
 function HistoryScreen(): JSX.Element {
   const { theme } = useAppSelector(state => state.themeReducer);

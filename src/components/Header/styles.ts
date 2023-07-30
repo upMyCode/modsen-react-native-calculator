@@ -1,8 +1,6 @@
 import styled from 'styled-components/native';
 
-interface Props {
-  theme: string;
-}
+import type { Props } from './types';
 
 const Wrapper = styled.SafeAreaView<Props>`
   display: flex;

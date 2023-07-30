@@ -1,15 +1,6 @@
 import styled from 'styled-components/native';
 
-interface CalculatorButtonProps {
-  bgColor: string;
-  width: string;
-  height: string;
-  radius: string;
-}
-interface TextContentProps {
-  textColor: string;
-  size: string;
-}
+import type { CalculatorButtonProps, TextContentProps } from './types';
 
 const CalculatorButton = styled.TouchableOpacity<CalculatorButtonProps>`
   display: flex;

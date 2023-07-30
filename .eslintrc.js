@@ -64,7 +64,25 @@ module.exports = {
     'prettier/prettier': 'error',
     'import/no-cycle': 'off',
     '@typescript-eslint/no-var-requires': 0,
+    'react/no-unstable-nested-components': [
+      'off',
+      {
+        allowAsProps: true,
+      },
+    ],
     'arrow-parens': ['error', 'as-needed'],
+    'no-nested-ternary': 'off',
+    indent: 'off',
+    'operator-linebreak': [
+      1,
+      'after',
+      {
+        overrides: {
+          '?': 'ignore',
+          ':': 'ignore',
+        },
+      },
+    ],
     'import/extensions': [
       'error',
       'ignorePackages',

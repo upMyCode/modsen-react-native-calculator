@@ -1,8 +1,6 @@
 import styled from 'styled-components/native';
 
-interface WrapperProps {
-  theme: string;
-}
+import { WrapperProps } from './types';
 
 const Wrapper = styled.View<WrapperProps>`
   flex: 1;

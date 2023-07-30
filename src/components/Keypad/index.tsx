@@ -11,233 +11,156 @@ import {
   KEY_CUPS_BLOCK_10,
 } from 'constants/keyCups';
 import React from 'react';
-import { FlatList, View } from 'react-native';
-import { Button } from 'src/index';
+import { View } from 'react-native';
+import { KeypadItem } from 'root';
 
 import {
   KeyCupContainer,
   KeyCupContainerBottom,
   KeyCupContainerNumbers,
   KeyCupContainerTop,
-  KeyCupListItem,
-  KeyCupListItemNumbers,
-  KeyCupListItemRightSideFirstGroup,
-  KeyCupListItemRightSideSecondGroup,
   Wrapper,
 } from './styles';
-
-interface KeypadProps {
-  handleSetMathExpression: (key: string) => void;
-}
+import type KeypadProps from './types';
 
 function Keypad({ handleSetMathExpression }: KeypadProps): JSX.Element {
   return (
     <Wrapper>
       <KeyCupContainerTop>
-        <FlatList
+        <KeypadItem
           data={KEY_CUPS_BLOCK_1}
-          numColumns={4}
-          keyExtractor={({ id }) => id}
-          renderItem={({ item }) => (
-            <KeyCupListItem>
-              <Button
-                title={item.title}
-                onPress={() => handleSetMathExpression(item.title)}
-                bgColor="#FFFFFF"
-                textColor="#109DFF"
-                radius="24"
-                width="62"
-                height="40"
-                size="18"
-              />
-            </KeyCupListItem>
-          )}
+          numCol={4}
+          type="BASE"
+          handleSetMathExpression={handleSetMathExpression}
+          bgColor="#FFFFFF"
+          textColor="#109DFF"
+          radius="24"
+          width="62"
+          height="40"
+          size="18"
         />
       </KeyCupContainerTop>
       <KeyCupContainer>
         <View>
           <KeyCupContainer>
-            <FlatList
+            <KeypadItem
               data={KEY_CUPS_BLOCK_2}
-              numColumns={1}
-              keyExtractor={({ id }) => id}
-              renderItem={({ item }) => (
-                <KeyCupListItem>
-                  <Button
-                    title={item.title}
-                    onPress={() => handleSetMathExpression(item.title)}
-                    bgColor="#FFFFFF"
-                    textColor="#858585"
-                    radius="16"
-                    width="62"
-                    height="62"
-                    size="32"
-                  />
-                </KeyCupListItem>
-              )}
+              numCol={1}
+              handleSetMathExpression={handleSetMathExpression}
+              bgColor="#FFFFFF"
+              textColor="#858585"
+              radius="16"
+              width="62"
+              height="62"
+              size="32"
+              type="BASE"
             />
-            <FlatList
+            <KeypadItem
               data={KEY_CUPS_BLOCK_3}
-              numColumns={1}
-              keyExtractor={({ id }) => id}
-              renderItem={({ item }) => (
-                <KeyCupListItem>
-                  <Button
-                    title={item.title}
-                    onPress={() => handleSetMathExpression(item.title)}
-                    bgColor="#FFFFFF"
-                    textColor="#858585"
-                    radius="16"
-                    width="62"
-                    height="62"
-                    size="22"
-                  />
-                </KeyCupListItem>
-              )}
+              numCol={1}
+              handleSetMathExpression={handleSetMathExpression}
+              bgColor="#FFFFFF"
+              textColor="#858585"
+              radius="16"
+              width="62"
+              height="62"
+              size="22"
+              type="BASE"
             />
-            <FlatList
+            <KeypadItem
               data={KEY_CUPS_BLOCK_4}
-              numColumns={1}
-              keyExtractor={({ id }) => id}
-              renderItem={({ item }) => (
-                <KeyCupListItem>
-                  <Button
-                    title={item.title}
-                    onPress={() => handleSetMathExpression(item.title)}
-                    bgColor="#ADE2FF"
-                    textColor="#109DFF"
-                    radius="16"
-                    width="62"
-                    height="62"
-                    size="32"
-                  />
-                </KeyCupListItem>
-              )}
+              numCol={1}
+              handleSetMathExpression={handleSetMathExpression}
+              bgColor="#ADE2FF"
+              textColor="#109DFF"
+              radius="16"
+              width="62"
+              height="62"
+              size="32"
+              type="BASE"
             />
           </KeyCupContainer>
           <KeyCupContainerNumbers>
-            <FlatList
+            <KeypadItem
               data={KEY_CUPS_BLOCK_5}
-              numColumns={3}
-              keyExtractor={({ id }) => id}
-              renderItem={({ item }) => (
-                <KeyCupListItemNumbers>
-                  <Button
-                    title={item.title}
-                    onPress={() => handleSetMathExpression(item.title)}
-                    bgColor="#FFFFFF"
-                    textColor="#38B9FF"
-                    radius="16"
-                    width="62"
-                    height="62"
-                    size="32"
-                  />
-                </KeyCupListItemNumbers>
-              )}
+              numCol={3}
+              handleSetMathExpression={handleSetMathExpression}
+              bgColor="#FFFFFF"
+              textColor="#38B9FF"
+              radius="16"
+              width="62"
+              height="62"
+              size="32"
+              type="NUM"
             />
           </KeyCupContainerNumbers>
           <KeyCupContainerBottom>
             <View>
-              <FlatList
+              <KeypadItem
                 data={KEY_CUPS_BLOCK_9}
-                numColumns={1}
-                keyExtractor={({ id }) => id}
-                renderItem={({ item }) => (
-                  <KeyCupListItem>
-                    <Button
-                      title={item.title}
-                      onPress={() => handleSetMathExpression(item.title)}
-                      bgColor="#FFFFFF"
-                      textColor="#109DFF"
-                      radius="16"
-                      width="144"
-                      height="60"
-                      size="32"
-                    />
-                  </KeyCupListItem>
-                )}
+                numCol={1}
+                handleSetMathExpression={handleSetMathExpression}
+                bgColor="#FFFFFF"
+                textColor="#109DFF"
+                radius="16"
+                width="144"
+                height="60"
+                size="32"
+                type="BASE"
               />
             </View>
             <View>
-              <FlatList
+              <KeypadItem
                 data={KEY_CUPS_BLOCK_10}
-                numColumns={1}
-                keyExtractor={({ id }) => id}
-                renderItem={({ item }) => (
-                  <KeyCupListItem>
-                    <Button
-                      title={item.title}
-                      onPress={() => handleSetMathExpression(item.title)}
-                      bgColor="#FFFFFF"
-                      textColor="#38B9FF"
-                      radius="16"
-                      width="62"
-                      height="62"
-                      size="32"
-                    />
-                  </KeyCupListItem>
-                )}
+                numCol={1}
+                handleSetMathExpression={handleSetMathExpression}
+                bgColor="#FFFFFF"
+                textColor="#38B9FF"
+                radius="16"
+                width="62"
+                height="62"
+                size="32"
+                type="BASE"
               />
             </View>
           </KeyCupContainerBottom>
         </View>
         <View>
           <View>
-            <FlatList
+            <KeypadItem
               data={KEY_CUPS_BLOCK_6}
-              keyExtractor={({ id }) => id}
-              renderItem={({ item }) => (
-                <KeyCupListItemRightSideFirstGroup>
-                  <Button
-                    title={item.title}
-                    onPress={() => handleSetMathExpression(item.title)}
-                    bgColor="#ADE2FF"
-                    textColor="#109DFF"
-                    radius="16"
-                    width="62"
-                    height="64"
-                    size="32"
-                  />
-                </KeyCupListItemRightSideFirstGroup>
-              )}
+              handleSetMathExpression={handleSetMathExpression}
+              bgColor="#ADE2FF"
+              textColor="#109DFF"
+              radius="16"
+              width="62"
+              height="64"
+              size="32"
+              type="FIRSTGROUP"
             />
           </View>
           <View>
-            <FlatList
+            <KeypadItem
               data={KEY_CUPS_BLOCK_7}
-              keyExtractor={({ id }) => id}
-              renderItem={({ item }) => (
-                <KeyCupListItemRightSideSecondGroup>
-                  <Button
-                    title={item.title}
-                    onPress={() => handleSetMathExpression(item.title)}
-                    bgColor="#ADE2FF"
-                    textColor="#109DFF"
-                    radius="16"
-                    width="62"
-                    height="96"
-                    size="32"
-                  />
-                </KeyCupListItemRightSideSecondGroup>
-              )}
+              handleSetMathExpression={handleSetMathExpression}
+              bgColor="#ADE2FF"
+              textColor="#109DFF"
+              radius="16"
+              width="62"
+              height="96"
+              size="32"
+              type="SECONDGROUP"
             />
-            <FlatList
+            <KeypadItem
               data={KEY_CUPS_BLOCK_8}
-              keyExtractor={({ id }) => id}
-              renderItem={({ item }) => (
-                <KeyCupListItemRightSideSecondGroup>
-                  <Button
-                    title={item.title}
-                    onPress={() => handleSetMathExpression(item.title)}
-                    bgColor="#1991FF"
-                    textColor="#B2DAFF"
-                    radius="16"
-                    width="62"
-                    height="96"
-                    size="32"
-                  />
-                </KeyCupListItemRightSideSecondGroup>
-              )}
+              handleSetMathExpression={handleSetMathExpression}
+              bgColor="#1991FF"
+              textColor="#B2DAFF"
+              radius="16"
+              width="62"
+              height="96"
+              size="32"
+              type="SECONDGROUP"
             />
           </View>
         </View>

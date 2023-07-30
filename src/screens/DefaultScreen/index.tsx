@@ -1,20 +1,10 @@
-import React, { ReactElement, ReactNode } from 'react';
-import { ImageSourcePropType } from 'react-native';
+import React from 'react';
 import { Header } from 'src/index';
 import { useAppSelector } from 'src/store/hooks';
 
 import Wrapper from './styles';
+import type { DefaultScreenProps } from './types';
 
-interface Icons {
-  Icon: ImageSourcePropType;
-  onPress: () => void;
-  id: string;
-}
-interface DefaultScreenProps {
-  children: ReactNode[] | ReactElement;
-  icons: Icons[];
-  title: string;
-}
 function DefaultScreen({
   children,
   title,
