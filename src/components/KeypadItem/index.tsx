@@ -30,7 +30,7 @@ function KeypadItem({
         ? KeyCupListItemNumbers
         : type === 'FIRSTGROUP'
         ? KeyCupListItemRightSideFirstGroup
-        : type === 'SECONDTGROUP'
+        : type === 'SECONDGROUP'
         ? KeyCupListItemRightSideSecondGroup
         : KeyCupListItem;
 
@@ -38,7 +38,9 @@ function KeypadItem({
       <Wrapper>
         <Button
           title={item.title}
-          onPress={() => handleSetMathExpression(item.title)}
+          onPress={() => {
+            return handleSetMathExpression(item.title);
+          }}
           bgColor={bgColor}
           textColor={textColor}
           radius={radius}
@@ -53,7 +55,9 @@ function KeypadItem({
     <FlatList
       data={data}
       numColumns={numCol}
-      keyExtractor={({ id }) => id}
+      keyExtractor={({ id }) => {
+        return id;
+      }}
       renderItem={handleRenderItem}
     />
   );

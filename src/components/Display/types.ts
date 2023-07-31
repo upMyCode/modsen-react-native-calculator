@@ -2,4 +2,8 @@ interface DisplayProps {
   expression: string;
 }
 
-export default DisplayProps;
+interface ExpressionProps {
+  type: string;
+}
+
+export type { DisplayProps, ExpressionProps };

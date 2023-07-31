@@ -9,7 +9,9 @@ const Wrapper = styled.SafeAreaView<Props>`
 `;
 
 const Info = styled.Text<Props>`
-  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#FFFFFF')};
+  color: ${({ theme }) => {
+    return theme === 'light' ? '#000000' : '#FFFFFF';
+  }};
   font-weight: 500;
   font-size: 24px;
   line-height: 36px;

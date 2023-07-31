@@ -1,12 +1,13 @@
 import styled from 'styled-components/native';
 
+import { bgColorDarkTheme, bgColorLightTheme } from '../../theme';
 import { WrapperProps } from './types';
 
-const Wrapper = styled.View<WrapperProps>`
+const Wrapper = styled.ScrollView<WrapperProps>`
   flex: 1;
-  justify-content: flex-start;
-  background-color: ${({ theme }) =>
-    theme === 'light' ? '#F7F8FB' : '#000000'};
+  background-color: ${({ theme }) => {
+    return theme === 'light' ? bgColorLightTheme : bgColorDarkTheme;
+  }};
 `;
 
 export default Wrapper;

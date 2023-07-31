@@ -10,7 +10,9 @@ function DefaultScreen({
   title,
   icons,
 }: DefaultScreenProps): JSX.Element {
-  const { theme } = useAppSelector(state => state.themeReducer);
+  const { theme } = useAppSelector(state => {
+    return state.themeReducer;
+  });
   return (
     <Wrapper theme={theme}>
       <Header title={title} icons={icons} />

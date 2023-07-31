@@ -51,7 +51,6 @@ module.exports = {
     'react/prop-types': 'off',
     'comma-dangle': 'off',
     'padded-blocks': 'off',
-    'arrow-body-style': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'react-native/no-unused-styles': 2,
     'react-native/split-platform-components': 2,
@@ -64,6 +63,8 @@ module.exports = {
     'prettier/prettier': 'error',
     'import/no-cycle': 'off',
     '@typescript-eslint/no-var-requires': 0,
+    'no-confusing-arrow': 0,
+    'arrow-body-style': ['error', 'always'],
     'react/no-unstable-nested-components': [
       'off',
       {

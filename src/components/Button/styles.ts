@@ -6,15 +6,27 @@ const CalculatorButton = styled.TouchableOpacity<CalculatorButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ bgColor }) => bgColor};
-  width: ${({ width }) => `${width}px`};
-  height: ${({ height }) => `${height}px`};
-  border-radius: ${({ radius }) => `${radius}px`};
+  background-color: ${({ bgColor }) => {
+    return bgColor;
+  }};
+  width: ${({ width }) => {
+    return `${width}px`;
+  }};
+  height: ${({ height }) => {
+    return `${height}px`;
+  }};
+  border-radius: ${({ radius }) => {
+    return `${radius}px`;
+  }};
 `;
 
 const TextContent = styled.Text<TextContentProps>`
-  color: ${({ textColor }) => textColor};
-  font-size: ${({ size }) => `${size}px`};
+  color: ${({ textColor }) => {
+    return textColor;
+  }};
+  font-size: ${({ size }) => {
+    return `${size}px`;
+  }};
   font-family: 'Poppins-Medium';
 `;
 
