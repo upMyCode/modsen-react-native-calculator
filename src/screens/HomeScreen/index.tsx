@@ -12,7 +12,9 @@ import type Icons from './types';
 
 function HomeScreen(): JSX.Element {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
-  const { theme } = useAppSelector(state => state.themeReducer);
+  const { theme } = useAppSelector(state => {
+    return state.themeReducer;
+  });
   const handleNavigate = () => {
     navigation.navigate('History');
   };
@@ -20,19 +22,19 @@ function HomeScreen(): JSX.Element {
     {
       Icon: SettingsBlack,
       onPress: handleNavigate,
-      id: '1',
+      id: '6ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     },
   ];
   const historyIconPackDark: Icons[] = [
     {
       Icon: SettingsLight,
       onPress: handleNavigate,
-      id: '10',
+      id: '7ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     },
   ];
-  const [themePack, setThemePack] = useState<Icons[]>(
-    () => historyIconPackLight,
-  );
+  const [themePack, setThemePack] = useState<Icons[]>(() => {
+    return historyIconPackLight;
+  });
 
   useEffect(() => {
     if (theme === 'light') {

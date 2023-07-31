@@ -10,8 +10,8 @@ function Display({ expression }: DisplayProps): JSX.Element {
     return state.themeReducer;
   });
 
-  const reconstructionExpression = (currentExoression: string) => {
-    const expressionItems = currentExoression.match(/([\d]+)|([+*-/%()]+)/g);
+  const reconstructionExpression = (currentExpression: string) => {
+    const expressionItems = currentExpression.match(/([\d]+)|([+*-/%()]+)/g);
 
     return expressionItems?.map(elem => {
       if (/(\d+)/.test(elem)) {

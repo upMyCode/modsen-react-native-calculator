@@ -10,7 +10,9 @@ import Wrapper from './styles';
 import type Icons from './types';
 
 function HistoryScreen(): JSX.Element {
-  const { theme } = useAppSelector(state => state.themeReducer);
+  const { theme } = useAppSelector(state => {
+    return state.themeReducer;
+  });
   const { changeTheme } = themeSlice.actions;
   const dispatch = useAppDispatch();
 
@@ -26,12 +28,14 @@ function HistoryScreen(): JSX.Element {
     {
       Icon: MoonLight,
       onPress: handleThemeChange,
-      id: '2',
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     },
     {
       Icon: BinLight,
-      onPress: () => Alert.alert('bin'),
-      id: '3',
+      onPress: () => {
+        return Alert.alert('bin');
+      },
+      id: '4ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     },
   ];
 
@@ -39,18 +43,20 @@ function HistoryScreen(): JSX.Element {
     {
       Icon: MoonBlack,
       onPress: handleThemeChange,
-      id: '2',
+      id: '3',
     },
     {
       Icon: BinBlack,
-      onPress: () => Alert.alert('bin'),
-      id: '3',
+      onPress: () => {
+        return Alert.alert('bin');
+      },
+      id: '5ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     },
   ];
 
-  const [themePack, setThemePack] = useState<Icons[]>(
-    () => historyIconPackLight,
-  );
+  const [themePack, setThemePack] = useState<Icons[]>(() => {
+    return historyIconPackLight;
+  });
 
   useEffect(() => {
     if (theme === 'light') {
