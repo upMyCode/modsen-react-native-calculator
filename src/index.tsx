@@ -1,5 +1,10 @@
 export { default as Button } from './components/Button';
 export { default as Calculator } from './components/Calculator';
+export { default as ContainerAside } from './components/ContainerAside';
+export { default as ContainerMiddleBottom } from './components/ContainerMiddleBottom';
+export { default as ContainerMiddleCenter } from './components/ContainerMiddleCenter';
+export { default as ContainerMiddleTop } from './components/ContainerMiddleTop';
+export { default as ContainerTop } from './components/ContainerTop';
 export { default as Display } from './components/Display';
 export { default as Header } from './components/Header';
 export { default as History } from './components/History';

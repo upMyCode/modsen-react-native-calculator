@@ -19,6 +19,8 @@ module.exports = {
           ['components', './components'],
           ['screens', './screens/'],
           ['constants', './constants/'],
+          ['theme', './theme/'],
+          ['hooks', './hooks/'],
         ],
       },
     },
@@ -65,13 +67,14 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
     'no-confusing-arrow': 0,
     'arrow-body-style': ['error', 'always'],
+    'object-curly-newline': ['error', 'never'],
     'react/no-unstable-nested-components': [
       'off',
       {
         allowAsProps: true,
       },
     ],
-    'arrow-parens': ['error', 'as-needed'],
+    'arrow-parens': ['error', 'always'],
     'no-nested-ternary': 'off',
     indent: 'off',
     'operator-linebreak': [

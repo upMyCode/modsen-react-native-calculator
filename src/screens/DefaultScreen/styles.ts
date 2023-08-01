@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
+import { bgColorDarkTheme, bgColorLightTheme } from 'theme/buttonTheme';
 
-import { bgColorDarkTheme, bgColorLightTheme } from '../../theme';
 import { WrapperProps } from './types';
 
 const Wrapper = styled.ScrollView<WrapperProps>`

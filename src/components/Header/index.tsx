@@ -6,7 +6,7 @@ import { Info, ManageIcon, ManageSettingsContainer, Wrapper } from './styles';
 import type { HeaderProps, Icons } from './types';
 
 function Header({ title, icons }: HeaderProps): JSX.Element {
-  const { theme } = useAppSelector(state => {
+  const { theme } = useAppSelector((state) => {
     return state.themeReducer;
   });
 

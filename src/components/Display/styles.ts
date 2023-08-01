@@ -1,6 +1,9 @@
 import styled from 'styled-components/native';
+import {
+  defaultDisplayTextColor,
+  operatorDisplayTextColor,
+} from 'theme/buttonTheme';
 
-import { defaultDisplayTextColor, operatorDisplayTextColor } from '../../theme';
 import type { ExpressionProps } from './types';
 
 const Wrapper = styled.View`

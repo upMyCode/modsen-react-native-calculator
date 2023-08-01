@@ -54,6 +54,7 @@ function KeypadItem({
   return (
     <FlatList
       data={data}
+      scrollEnabled={false}
       numColumns={numCol}
       keyExtractor={({ id }) => {
         return id;
