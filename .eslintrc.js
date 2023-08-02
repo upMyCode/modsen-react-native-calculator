@@ -19,6 +19,8 @@ module.exports = {
           ['components', './components'],
           ['screens', './screens/'],
           ['constants', './constants/'],
+          ['theme', './theme/'],
+          ['hooks', './hooks/'],
         ],
       },
     },
@@ -51,7 +53,6 @@ module.exports = {
     'react/prop-types': 'off',
     'comma-dangle': 'off',
     'padded-blocks': 'off',
-    'arrow-body-style': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'react-native/no-unused-styles': 2,
     'react-native/split-platform-components': 2,
@@ -64,7 +65,28 @@ module.exports = {
     'prettier/prettier': 'error',
     'import/no-cycle': 'off',
     '@typescript-eslint/no-var-requires': 0,
-    'arrow-parens': ['error', 'as-needed'],
+    'no-confusing-arrow': 0,
+    'arrow-body-style': ['error', 'always'],
+    'object-curly-newline': ['error', 'never'],
+    'react/no-unstable-nested-components': [
+      'off',
+      {
+        allowAsProps: true,
+      },
+    ],
+    'arrow-parens': ['error', 'always'],
+    'no-nested-ternary': 'off',
+    indent: 'off',
+    'operator-linebreak': [
+      1,
+      'after',
+      {
+        overrides: {
+          '?': 'ignore',
+          ':': 'ignore',
+        },
+      },
+    ],
     'import/extensions': [
       'error',
       'ignorePackages',

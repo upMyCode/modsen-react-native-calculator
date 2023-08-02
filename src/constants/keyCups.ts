@@ -1,4 +1,4 @@
-import KeyCups from '../types/keyCups';
+import { KeyCups } from '../types/keyCups';
 
 const KEY_CUPS_BLOCK_1: KeyCups = [
   { title: '±', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f60' },

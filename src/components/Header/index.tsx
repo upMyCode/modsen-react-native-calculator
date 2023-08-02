@@ -1,31 +1,36 @@
-import React, { ReactNode, ReactElement, FC } from 'react';
-import { Pressable } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-import type { StackNavigationProp } from '@react-navigation/stack';
+import React from 'react';
+import { FlatList, Image, ListRenderItemInfo, Pressable } from 'react-native';
+import { useAppSelector } from 'src/store/hooks';
 
-import { RootStackParams } from '../../../App';
-import { Info, ManageSettingsContainer, Wrapper } from './styles';
-import { SvgProps } from 'react-native-svg';
+import { Info, ManageIcon, ManageSettingsContainer, Wrapper } from './styles';
+import type { HeaderProps, Icons } from './types';
 
-interface HeaderProps {
-  title: string;
-  icons: FC<SvgProps>[];
-}
 function Header({ title, icons }: HeaderProps): JSX.Element {
-  const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
+  const { theme } = useAppSelector((state) => {
+    return state.themeReducer;
+  });
 
-  const handleNavigate = () => {
-    navigation.navigate('History');
+  const handleRenderIcons = ({ item }: ListRenderItemInfo<Icons>) => {
+    const DEFAULT_IMAGE = Image.resolveAssetSource(item.Icon).uri;
+
+    return (
+      <Pressable onPress={item.onPress}>
+        <ManageIcon source={{ uri: DEFAULT_IMAGE }} />
+      </Pressable>
+    );
   };
   return (
-    <Wrapper>
-      <Info>{title}</Info>
+    <Wrapper theme={theme}>
+      <Info theme={theme}>{title}</Info>
       <ManageSettingsContainer>
-        {icons.map((Icon: FC<SvgProps>) => (
-          <Pressable onPress={handleNavigate}>
-            <Icon width={32} height={32} />
-          </Pressable>
-        ))}
+        <FlatList
+          horizontal
+          data={icons}
+          keyExtractor={({ id }) => {
+            return id;
+          }}
+          renderItem={handleRenderIcons}
+        />
       </ManageSettingsContainer>
     </Wrapper>
   );

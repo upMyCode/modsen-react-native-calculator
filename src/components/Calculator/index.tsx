@@ -10,11 +10,15 @@ function Calculator(): JSX.Element {
   const handleSetMathExpression = (key: string) => {
     if (key) {
       if (DISPLAYED_KEY_CUPS.includes(key)) {
-        setMathExpression(prev => prev + key);
+        setMathExpression((prev) => {
+          return prev + key;
+        });
       }
       if (UN_DISPLAYED_KEY_CUPS) {
         if (key === '⌫' && mathExpression) {
-          setMathExpression(prev => prev.slice(0, -1));
+          setMathExpression((prev) => {
+            return prev.slice(0, -1);
+          });
         }
         if (key === 'Ac' && mathExpression) {
           setMathExpression('');
@@ -38,7 +42,7 @@ function Calculator(): JSX.Element {
             } else {
               lastStr = lastStr.replace(/-/, '+');
             }
-            setMathExpression(prev => {
+            setMathExpression((prev) => {
               return prev.replace(match[match.length - 1], lastStr);
             });
           }

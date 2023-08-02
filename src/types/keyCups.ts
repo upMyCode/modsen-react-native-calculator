@@ -5,4 +5,4 @@ interface KEYCUP {
 
 type KeyCups = KEYCUP[];
 
-export default KeyCups;
+export type { KEYCUP, KeyCups };

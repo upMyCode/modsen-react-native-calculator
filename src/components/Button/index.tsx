@@ -1,17 +1,7 @@
 import React from 'react';
 
 import { CalculatorButton, TextContent } from './styles';
-
-interface ButtonProps {
-  title: string;
-  onPress: () => void;
-  bgColor: string;
-  textColor: string;
-  height: string;
-  width: string;
-  radius: string;
-  size: string;
-}
+import type { ButtonProps } from './types';
 
 function Button({
   title,

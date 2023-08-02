@@ -1,30 +1,33 @@
 import styled from 'styled-components/native';
 
-interface CalculatorButtonProps {
-  bgColor: string;
-  width: string;
-  height: string;
-  radius: string;
-}
-interface TextContentProps {
-  textColor: string;
-  size: string;
-}
+import type { CalculatorButtonProps, TextContentProps } from './types';
 
 const CalculatorButton = styled.TouchableOpacity<CalculatorButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ bgColor }) => bgColor};
-  width: ${({ width }) => `${width}px`};
-  height: ${({ height }) => `${height}px`};
-  border-radius: ${({ radius }) => `${radius}px`};
+  background-color: ${({ bgColor }) => {
+    return bgColor;
+  }};
+  width: ${({ width }) => {
+    return `${width}px`;
+  }};
+  height: ${({ height }) => {
+    return `${height}px`;
+  }};
+  border-radius: ${({ radius }) => {
+    return `${radius}px`;
+  }};
 `;
 
 const TextContent = styled.Text<TextContentProps>`
-  color: ${({ textColor }) => textColor};
-  font-size: ${({ size }) => `${size}px`};
-  font-weight: 500;
+  color: ${({ textColor }) => {
+    return textColor;
+  }};
+  font-size: ${({ size }) => {
+    return `${size}px`;
+  }};
+  font-family: 'Poppins-Medium';
 `;
 
 export { CalculatorButton, TextContent };

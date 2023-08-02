@@ -1,13 +1,17 @@
 import styled from 'styled-components/native';
 
-const Wrapper = styled.SafeAreaView`
+import type { Props } from './types';
+
+const Wrapper = styled.SafeAreaView<Props>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
-const Info = styled.Text`
-  color: #000000;
+const Info = styled.Text<Props>`
+  color: ${({ theme }) => {
+    return theme === 'light' ? '#000000' : '#FFFFFF';
+  }};
   font-weight: 500;
   font-size: 24px;
   line-height: 36px;
@@ -23,4 +27,9 @@ const ManageSettingsContainer = styled.View`
   margin-right: 13px;
 `;
 
-export { Info, ManageSettingsContainer, Wrapper };
+const ManageIcon = styled.Image`
+  width: 32px;
+  height: 32px;
+`;
+
+export { Info, ManageIcon, ManageSettingsContainer, Wrapper };
