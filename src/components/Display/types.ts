@@ -1,9 +1,14 @@
 interface DisplayProps {
   expression: string;
+  result: string;
 }
 
 interface ExpressionProps {
   type: string;
 }
 
-export type { DisplayProps, ExpressionProps };
+interface ResultProps {
+  theme: string;
+}
+
+export type { DisplayProps, ExpressionProps, ResultProps };

@@ -2,11 +2,13 @@ import { DISPLAYED_KEY_CUPS, UN_DISPLAYED_KEY_CUPS } from 'constants/keyCups';
 import React, { useState } from 'react';
 import { Display, Keypad } from 'root';
 
+import mathExecuter from '../../helper/mathExecuter';
 import Wrapper from './styles';
 import type bracketsState from './types';
 
 function Calculator(): JSX.Element {
   const [mathExpression, setMathExpression] = useState<string>('');
+  const [result, setResult] = useState<string>('');
   const [bracketsCounter, setBracketsCounter] = useState<bracketsState>({
     open: 0,
     close: 0,
@@ -64,6 +66,7 @@ function Calculator(): JSX.Element {
         if (key === 'Ac' && mathExpression) {
           setBracketsCounter({ open: 0, close: 0 });
           setMathExpression('');
+          setResult('');
         }
         if (key === '±') {
           const re = /(-\d+)|(\+\d+)|(\d+)/g;
@@ -89,12 +92,21 @@ function Calculator(): JSX.Element {
             });
           }
         }
+
+        if (key === '=') {
+          const mathExecuterResult = mathExecuter();
+          const mathResult = mathExecuterResult(mathExpression);
+
+          if (mathResult) {
+            setResult(mathResult);
+          }
+        }
       }
     }
   };
   return (
     <Wrapper>
-      <Display expression={mathExpression} />
+      <Display expression={mathExpression} result={result} />
       <Keypad handleSetMathExpression={handleSetMathExpression} />
     </Wrapper>
   );

@@ -1,5 +1,6 @@
 interface CalculatorDisplay {
   result: number;
+  ntermediateResult: number;
 }
 
 abstract class OperationCommand {
@@ -23,41 +24,61 @@ abstract class OperationCommand {
 
 class PlusCommand extends OperationCommand {
   execute() {
-    this.calculatorDisplay.result += this.operand_1 + this.operand_2;
+    this.calculatorDisplay.intermediateResult +=
+      this.operand_1 + this.operand_2;
   }
   undo() {
-    this.calculatorDisplay.result -= this.operand_1 + this.operand_2;
+    this.calculatorDisplay.intermediateResult -=
+      this.operand_1 + this.operand_2;
   }
 }
 class MinusCommand extends OperationCommand {
   execute() {
-    this.calculatorDisplay.result += this.operand_1 - this.operand_2;
+    this.calculatorDisplay.intermediateResult +=
+      this.operand_1 - this.operand_2;
   }
   undo() {
-    this.calculatorDisplay.result -= this.operand_1 - this.operand_2;
+    this.calculatorDisplay.intermediateResult -=
+      this.operand_1 - this.operand_2;
   }
 }
 class MultiplicationCommand extends OperationCommand {
   execute() {
-    this.calculatorDisplay.result += this.operand_1 * this.operand_2;
+    this.calculatorDisplay.intermediateResult +=
+      this.operand_1 * this.operand_2;
   }
   undo() {
-    this.calculatorDisplay.result -= this.operand_1 * this.operand_2;
+    this.calculatorDisplay.intermediateResult -=
+      this.operand_1 * this.operand_2;
   }
 }
 class DivisionCommand extends OperationCommand {
   execute() {
-    this.calculatorDisplay.result += this.operand_1 / this.operand_2;
+    this.calculatorDisplay.intermediateResult +=
+      this.operand_1 / this.operand_2;
   }
   undo() {
-    this.calculatorDisplay.result -= this.operand_1 / this.operand_2;
+    this.calculatorDisplay.intermediateResult -=
+      this.operand_1 / this.operand_2;
   }
 }
 class CalculatorDisplay {
   result: number;
+  intermediateResult: number;
 
   constructor() {
     this.result = 0;
+    this.intermediateResult = 0;
+  }
+
+  setResult(result: number) {
+    this.result = result;
+  }
+  getIntermediateResult() {
+    return this.intermediateResult;
+  }
+  resetIntermediateResult() {
+    this.intermediateResult = 0;
   }
 }
 class MathCalculator {

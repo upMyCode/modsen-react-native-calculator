@@ -59,15 +59,13 @@ const DISPLAYED_KEY_CUPS: string[] = [
   '(',
   ')',
   '.',
-  '=',
   '/',
   '*',
 ];
 
-const UN_DISPLAYED_KEY_CUPS: string[] = ['Ac', '⌫', '±'];
+const UN_DISPLAYED_KEY_CUPS: string[] = ['Ac', '⌫', '±', '='];
 
-export {
-  DISPLAYED_KEY_CUPS,
+export { DISPLAYED_KEY_CUPS,
   KEY_CUPS_BLOCK_1,
   KEY_CUPS_BLOCK_2,
   KEY_CUPS_BLOCK_3,
@@ -78,5 +76,4 @@ export {
   KEY_CUPS_BLOCK_8,
   KEY_CUPS_BLOCK_9,
   KEY_CUPS_BLOCK_10,
-  UN_DISPLAYED_KEY_CUPS,
-};
+  UN_DISPLAYED_KEY_CUPS,};
