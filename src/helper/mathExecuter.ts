@@ -124,10 +124,13 @@ const mathExecuter = () => {
     mathExpression = removeBrackets(mathExpression);
     mathExpression = autoCorrectExpression(mathExpression);
 
-    const result = addAccuracyForExpression(parseLinearMath(mathExpression), 4);
-    display.setResult(Number(result));
+    const mathResult = addAccuracyForExpression(
+      parseLinearMath(mathExpression),
+      4
+    );
+    display.setResult(Number(mathResult));
 
-    return result;
+    return mathResult;
   }
   function getMathFn() {
     const localMath = {

@@ -2,8 +2,10 @@ import { DISPLAYED_KEY_CUPS, UN_DISPLAYED_KEY_CUPS } from 'constants/keyCups';
 import React, { useState } from 'react';
 import { Dimensions, LayoutChangeEvent } from 'react-native';
 import { Display, Keypad } from 'root';
+import { useAppDispatch } from 'src/store/hooks';
 
 import mathExecuter from '../../helper/mathExecuter';
+import { addOperation } from '../../reducers/operationListReducer';
 import Wrapper from './styles';
 import type bracketsState from './types';
 
@@ -12,6 +14,7 @@ function Calculator(): JSX.Element {
   const [isExpressionOutOfBounds, setExpressionBoundsStatus] =
     useState<boolean>(false);
   const [result, setResult] = useState<string>('');
+  const dispatch = useAppDispatch();
   const [bracketsCounter, setBracketsCounter] = useState<bracketsState>({
     open: 0,
     close: 0,
@@ -115,6 +118,7 @@ function Calculator(): JSX.Element {
 
           if (mathResult) {
             setResult(mathResult);
+            dispatch(addOperation(`${mathExpression} = ${mathResult}`));
           }
         }
       }

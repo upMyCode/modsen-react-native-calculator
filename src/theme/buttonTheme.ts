@@ -4,6 +4,8 @@ export const bgColorLightTheme = '#F7F8FB';
 export const bgColorDarkTheme = '#000000';
 export const headerInfoLightTheme = '#FFFFFF';
 export const headerInfoDarkTheme = '#000000';
+export const historyItemTextLightTheme = '#000000';
+export const historyItemTextDarkTheme = '#FFFFFF';
 
 export const themeColorLight = {
   bgColorKeyCupsBlock1: '#FFFFFF',

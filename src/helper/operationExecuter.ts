@@ -19,7 +19,6 @@ abstract class OperationCommand {
   }
 
   abstract execute(): void;
-  abstract undo(): void;
 }
 
 class PlusCommand extends OperationCommand {
@@ -27,26 +26,17 @@ class PlusCommand extends OperationCommand {
     this.calculatorDisplay.intermediateResult +=
       this.operand_1 + this.operand_2;
   }
-  undo() {
-    this.calculatorDisplay.result -= this.operand_1 + this.operand_2;
-  }
 }
 class MinusCommand extends OperationCommand {
   execute() {
     this.calculatorDisplay.intermediateResult +=
       this.operand_1 - this.operand_2;
   }
-  undo() {
-    this.calculatorDisplay.result -= this.operand_1 - this.operand_2;
-  }
 }
 class MultiplicationCommand extends OperationCommand {
   execute() {
     this.calculatorDisplay.intermediateResult +=
       this.operand_1 * this.operand_2;
-  }
-  undo() {
-    this.calculatorDisplay.result -= this.operand_1 * this.operand_2;
   }
 }
 class DivisionCommand extends OperationCommand {
@@ -63,9 +53,6 @@ class RemainderCommand extends OperationCommand {
   execute() {
     this.calculatorDisplay.intermediateResult +=
       this.operand_1 % this.operand_2;
-  }
-  undo() {
-    /There will be reverse operation/;
   }
 }
 class CalculatorDisplay {
@@ -122,16 +109,14 @@ class MathCalculator {
 
     this.operations.push(command);
   }
-
-  undo(count: number) {
-    for (let i = 0; i < count; ++i) {
-      const command = this.operations.pop();
-
-      if (command) {
-        command.undo();
-      }
-    }
-  }
 }
 
-export { MathCalculator, CalculatorDisplay };
+export {
+  MathCalculator,
+  CalculatorDisplay,
+  PlusCommand,
+  MinusCommand,
+  MultiplicationCommand,
+  DivisionCommand,
+  RemainderCommand,
+};
