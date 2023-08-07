@@ -27,7 +27,7 @@ const Expression = styled.Text<ExpressionProps>`
 `;
 
 const Result = styled.Text<ResultProps>`
-  font-style: Poppins-Regular;
+  font-family: Poppins-Regular;
   line-height: 72px;
   font-size: 48px;
   color: ${({ theme }) => {

@@ -1,6 +1,6 @@
 interface CalculatorDisplay {
   result: number;
-  ntermediateResult: number;
+  intermediateResult: number;
 }
 
 abstract class OperationCommand {
@@ -10,12 +10,12 @@ abstract class OperationCommand {
 
   constructor(
     calculatorDisplay: CalculatorDisplay,
-    operand_1: number,
-    operand_2: number
+    operand_1: string,
+    operand_2: string
   ) {
     this.calculatorDisplay = calculatorDisplay;
-    this.operand_1 = operand_1;
-    this.operand_2 = operand_2;
+    this.operand_1 = Number(operand_1);
+    this.operand_2 = Number(operand_2);
   }
 
   abstract execute(): void;
@@ -28,8 +28,7 @@ class PlusCommand extends OperationCommand {
       this.operand_1 + this.operand_2;
   }
   undo() {
-    this.calculatorDisplay.intermediateResult -=
-      this.operand_1 + this.operand_2;
+    this.calculatorDisplay.result -= this.operand_1 + this.operand_2;
   }
 }
 class MinusCommand extends OperationCommand {
@@ -38,8 +37,7 @@ class MinusCommand extends OperationCommand {
       this.operand_1 - this.operand_2;
   }
   undo() {
-    this.calculatorDisplay.intermediateResult -=
-      this.operand_1 - this.operand_2;
+    this.calculatorDisplay.result -= this.operand_1 - this.operand_2;
   }
 }
 class MultiplicationCommand extends OperationCommand {
@@ -48,8 +46,7 @@ class MultiplicationCommand extends OperationCommand {
       this.operand_1 * this.operand_2;
   }
   undo() {
-    this.calculatorDisplay.intermediateResult -=
-      this.operand_1 * this.operand_2;
+    this.calculatorDisplay.result -= this.operand_1 * this.operand_2;
   }
 }
 class DivisionCommand extends OperationCommand {
@@ -58,8 +55,17 @@ class DivisionCommand extends OperationCommand {
       this.operand_1 / this.operand_2;
   }
   undo() {
-    this.calculatorDisplay.intermediateResult -=
-      this.operand_1 / this.operand_2;
+    this.calculatorDisplay.result -= this.operand_1 / this.operand_2;
+  }
+}
+
+class RemainderCommand extends OperationCommand {
+  execute() {
+    this.calculatorDisplay.intermediateResult +=
+      this.operand_1 % this.operand_2;
+  }
+  undo() {
+    /There will be reverse operation/;
   }
 }
 class CalculatorDisplay {
@@ -83,7 +89,11 @@ class CalculatorDisplay {
 }
 class MathCalculator {
   operations: Array<
-    PlusCommand | MinusCommand | MultiplicationCommand | DivisionCommand
+    | PlusCommand
+    | MinusCommand
+    | MultiplicationCommand
+    | DivisionCommand
+    | RemainderCommand
   >;
   constructor() {
     this.operations = [];
@@ -91,8 +101,8 @@ class MathCalculator {
 
   operation(
     calculatorDisplay: CalculatorDisplay,
-    operand_1: number,
-    operand_2: number,
+    operand_1: string,
+    operand_2: string,
     operator: string
   ) {
     let Command =
@@ -102,6 +112,8 @@ class MathCalculator {
         ? MinusCommand
         : operator === '*'
         ? MultiplicationCommand
+        : operator === '%'
+        ? RemainderCommand
         : DivisionCommand;
 
     const command = new Command(calculatorDisplay, operand_1, operand_2);

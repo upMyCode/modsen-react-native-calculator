@@ -39,6 +39,23 @@ const mathExecuter = () => {
       return expression;
     }
 
+    function remainder(expression: string) {
+      const { length } = expression.match(/%/g) || [];
+      if (!length) return expression;
+
+      for (let i = 0; i < length; i += 1) {
+        expression = expression.replace(
+          /(\d+(?:\.\d+)?)(%)(-?\d+(?:\.\d+)?)/,
+          (_, a, oper, b) => {
+            return math(a, oper, b);
+          }
+        );
+
+        expression = autoCorrectExpression(expression);
+      }
+
+      return expression;
+    }
     function plusMinus(expression: string) {
       const { length } = expression.match(/\+|-/g) || [];
       if (!length) return expression;
@@ -59,6 +76,7 @@ const mathExecuter = () => {
 
     mathExpression = autoCorrectExpression(mathExpression);
     mathExpression = mulDiv(mathExpression);
+    mathExpression = remainder(mathExpression);
     mathExpression = plusMinus(mathExpression);
 
     return mathExpression;
@@ -82,7 +100,7 @@ const mathExecuter = () => {
     let scope = '(';
     let open = 1;
 
-    for (let i = index + 1; i <= 100000; i += 1) {
+    for (let i = index + 1; i <= mathExpression.length; i += 1) {
       scope += mathExpression[i];
 
       if (mathExpression[i] === '(') {
@@ -106,7 +124,7 @@ const mathExecuter = () => {
     mathExpression = removeBrackets(mathExpression);
     mathExpression = autoCorrectExpression(mathExpression);
 
-    const result = addAccuracyForExpression(parseLinearMath(mathExpression), 3);
+    const result = addAccuracyForExpression(parseLinearMath(mathExpression), 4);
     display.setResult(Number(result));
 
     return result;
@@ -123,9 +141,9 @@ const mathExecuter = () => {
         return result;
       },
       '-': (a, b) => {
-        let result = 0;
+        let result = 0n;
 
-        calculator.operation(display, Number(a), Number(b), '-');
+        calculator.operation(display, a, b, '-');
         result = display.getIntermediateResult();
         display.resetIntermediateResult();
 
@@ -134,7 +152,7 @@ const mathExecuter = () => {
       '*': (a, b) => {
         let result = 0;
 
-        calculator.operation(display, Number(a), Number(b), '*');
+        calculator.operation(display, a, b, '*');
         result = display.getIntermediateResult();
         display.resetIntermediateResult();
 
@@ -143,7 +161,16 @@ const mathExecuter = () => {
       '/': (a, b) => {
         let result = 0;
 
-        calculator.operation(display, Number(a), Number(b), '/');
+        calculator.operation(display, a, b, '/');
+        result = display.getIntermediateResult();
+        display.resetIntermediateResult();
+
+        return result;
+      },
+      '%': (a, b) => {
+        let result = 0;
+
+        calculator.operation(display, a, b, '%');
         result = display.getIntermediateResult();
         display.resetIntermediateResult();
 

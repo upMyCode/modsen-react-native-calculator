@@ -1,5 +1,10 @@
 const addAccuracyForExpression = (expression: string, accuracy: number) => {
   const periodIndex = expression.indexOf('.');
+  const isExponentForm = /[e]/.test(expression);
+
+  if (isExponentForm) return expression;
+  if (periodIndex === -1) return expression;
+
   let resultExpression = '';
   let expressionBeforePeriod = '';
   let expressionAfterPeriod = '';
@@ -8,13 +13,13 @@ const addAccuracyForExpression = (expression: string, accuracy: number) => {
     expressionBeforePeriod += expression[i];
   }
 
-  for (let j = periodIndex + 1; j < expression.length; j += 1) {
+  for (let j = periodIndex; j < expression.length; j += 1) {
     expressionAfterPeriod += expression[j];
   }
 
   expressionAfterPeriod = expressionAfterPeriod.slice(0, accuracy);
 
-  resultExpression = `${expressionBeforePeriod}.${expressionAfterPeriod}`;
+  resultExpression = `${expressionBeforePeriod}${expressionAfterPeriod}`;
 
   return resultExpression;
 };
