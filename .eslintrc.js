@@ -67,6 +67,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
     'no-confusing-arrow': 0,
     'arrow-body-style': ['error', 'always'],
+    'no-param-reassign': 0,
     'object-curly-newline': ['error', 'never'],
     'react/no-unstable-nested-components': [
       'off',
