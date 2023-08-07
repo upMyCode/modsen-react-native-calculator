@@ -5,7 +5,11 @@ import { useAppSelector } from 'src/store/hooks';
 import { Expression, Result, Wrapper } from './styles';
 import type { DisplayProps } from './types';
 
-function Display({ expression, result }: DisplayProps): JSX.Element {
+function Display({
+  expression,
+  result,
+  handleLayout,
+}: DisplayProps): JSX.Element {
   const { theme } = useAppSelector((state) => {
     return state.themeReducer;
   });
@@ -21,7 +25,9 @@ function Display({ expression, result }: DisplayProps): JSX.Element {
   };
   return (
     <Wrapper>
-      <Text>{reconstructionExpression(expression)}</Text>
+      <Text onLayout={handleLayout}>
+        {reconstructionExpression(expression)}
+      </Text>
       {result && <Result theme={theme}>{`=${result}`}</Result>}
     </Wrapper>
   );

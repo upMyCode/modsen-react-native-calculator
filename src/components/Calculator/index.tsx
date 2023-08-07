@@ -1,5 +1,6 @@
 import { DISPLAYED_KEY_CUPS, UN_DISPLAYED_KEY_CUPS } from 'constants/keyCups';
 import React, { useState } from 'react';
+import { Dimensions, LayoutChangeEvent } from 'react-native';
 import { Display, Keypad } from 'root';
 
 import mathExecuter from '../../helper/mathExecuter';
@@ -8,12 +9,25 @@ import type bracketsState from './types';
 
 function Calculator(): JSX.Element {
   const [mathExpression, setMathExpression] = useState<string>('');
+  const [isExpressionOutOfBounds, setExpressionBoundsStatus] =
+    useState<boolean>(false);
   const [result, setResult] = useState<string>('');
   const [bracketsCounter, setBracketsCounter] = useState<bracketsState>({
     open: 0,
     close: 0,
   });
 
+  const handleLayout = (event: LayoutChangeEvent) => {
+    const { width } = event.nativeEvent.layout;
+    const windowWidth = Dimensions.get('window').width;
+    const SAFE_PIXEL_SPACING = 15;
+
+    if (width + SAFE_PIXEL_SPACING > windowWidth) {
+      setExpressionBoundsStatus(true);
+    } else {
+      setExpressionBoundsStatus(false);
+    }
+  };
   const handleSetMathExpression = (key: string) => {
     if (key) {
       if (DISPLAYED_KEY_CUPS.includes(key)) {
@@ -40,6 +54,8 @@ function Calculator(): JSX.Element {
             return { ...prev, close: prev.close + 1 };
           });
         }
+
+        if (isExpressionOutOfBounds) return;
 
         setMathExpression((prev) => {
           return prev + key;
@@ -106,7 +122,11 @@ function Calculator(): JSX.Element {
   };
   return (
     <Wrapper>
-      <Display expression={mathExpression} result={result} />
+      <Display
+        handleLayout={handleLayout}
+        expression={mathExpression}
+        result={result}
+      />
       <Keypad handleSetMathExpression={handleSetMathExpression} />
     </Wrapper>
   );
