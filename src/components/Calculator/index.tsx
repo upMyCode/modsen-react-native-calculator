@@ -1,6 +1,6 @@
 import { DISPLAYED_KEY_CUPS, UN_DISPLAYED_KEY_CUPS } from 'constants/keyCups';
 import React, { useState } from 'react';
-import { Dimensions, LayoutChangeEvent } from 'react-native';
+import { Alert, Dimensions, LayoutChangeEvent } from 'react-native';
 import { Display, Keypad } from 'root';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
@@ -38,6 +38,7 @@ function Calculator(): JSX.Element {
     const SAFE_PIXEL_SPACING = 48;
 
     if (width + SAFE_PIXEL_SPACING > windowWidth) {
+      Alert.alert('You have exceeded the allowed character limit');
       setExpressionBoundsStatus(true);
     } else {
       setExpressionBoundsStatus(false);

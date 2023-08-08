@@ -9,6 +9,7 @@ interface OperationList {
   operationList: Array<OperationItem>;
 }
 
+let BASE_ID = 0;
 const initialState: OperationList = { operationList: [] };
 
 export const operationListSlice = createSlice({
@@ -16,8 +17,9 @@ export const operationListSlice = createSlice({
   initialState,
   reducers: {
     addOperation(state, action: PayloadAction<string>) {
+      BASE_ID += BASE_ID + 1;
       state.operationList.push({
-        id: (state.operationList.length + 1).toString(),
+        id: BASE_ID.toString(),
         context: action.payload,
       });
     },
