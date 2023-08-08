@@ -36,7 +36,10 @@ function Calculator(): JSX.Element {
       if (DISPLAYED_KEY_CUPS.includes(key)) {
         const lastChar = mathExpression.slice(-1);
 
-        if (!/[\d|(|)+|-]/.test(key) && !/[\d|(|)|+|-]/.test(lastChar)) return;
+        if (!/[\d|(|)+|-|.]/.test(key) && !/[\d|(|)|+|-]/.test(lastChar)) {
+          return;
+        }
+        if (lastChar === '.' && key === '.') return;
         if (lastChar === '+' && key === '+') return;
         if (lastChar === '-' && key === '-') return;
         if (/[+|-]/.test(lastChar) && /[*|/]/.test(key)) return;

@@ -18,7 +18,10 @@ const mathExecuter = () => {
       .replace(/\)\(/g, ')*(')
       .replace(/(\d)\(/g, '$1*(')
       .replace(/\)(\d)/g, ')*$1')
-      .replace(/(\/|\*)\+/g, '$1');
+      .replace(/(\/|\*)\+/g, '$1')
+      .replace(/(?<!\d+)\.\d+/g, (_) => {
+        return `0${_}`;
+      });
   }
   function parseLinearMath(mathExpression: string) {
     function mulDiv(expression: string) {
