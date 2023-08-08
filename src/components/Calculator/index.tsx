@@ -58,6 +58,7 @@ function Calculator(): JSX.Element {
         if (/[+|-]/.test(lastChar) && /[*|/]/.test(key)) return;
         if (lastChar === '(' && /[*|/|%]/.test(key)) return;
         if (/[*|/|+|-]/.test(lastChar) && key === ')') return;
+        if (lastChar === ')' && /\d+/.test(key)) return;
         if (key === ')' && bracketsCounter.close >= bracketsCounter.open) {
           return;
         }
@@ -133,7 +134,7 @@ function Calculator(): JSX.Element {
 
           if (result) {
             dispatch(changeMathResult(result));
-            dispatch(addOperation(`${mathExpression} = ${result}`));
+            dispatch(addOperation({ mathExpression, mathResult: result }));
           }
         }
       }

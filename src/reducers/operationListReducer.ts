@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface OperationItem {
-  context: string;
+  mathResult: string;
+  mathExpression: string;
   id: string;
 }
 
@@ -9,6 +10,10 @@ interface OperationList {
   operationList: Array<OperationItem>;
 }
 
+interface Payload {
+  mathResult: string;
+  mathExpression: string;
+}
 let BASE_ID = 0;
 const initialState: OperationList = { operationList: [] };
 
@@ -16,11 +21,12 @@ export const operationListSlice = createSlice({
   name: 'operationList',
   initialState,
   reducers: {
-    addOperation(state, action: PayloadAction<string>) {
+    addOperation(state, action: PayloadAction<Payload>) {
       BASE_ID += BASE_ID + 1;
       state.operationList.push({
         id: BASE_ID.toString(),
-        context: action.payload,
+        mathResult: action.payload.mathResult,
+        mathExpression: action.payload.mathExpression,
       });
     },
     removeOperation(state, action: PayloadAction<string>) {
