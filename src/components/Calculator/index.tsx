@@ -2,18 +2,30 @@ import { DISPLAYED_KEY_CUPS, UN_DISPLAYED_KEY_CUPS } from 'constants/keyCups';
 import React, { useState } from 'react';
 import { Dimensions, LayoutChangeEvent } from 'react-native';
 import { Display, Keypad } from 'root';
-import { useAppDispatch } from 'src/store/hooks';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
 import mathExecuter from '../../helper/mathExecuter';
+import {
+  changeMathExpression,
+  removeMathExpression,
+} from '../../reducers/mathExpressionReducer';
+import {
+  changeMathResult,
+  removeMathResult,
+} from '../../reducers/mathResultReducer';
 import { addOperation } from '../../reducers/operationListReducer';
 import Wrapper from './styles';
 import type bracketsState from './types';
 
 function Calculator(): JSX.Element {
-  const [mathExpression, setMathExpression] = useState<string>('');
+  const { mathExpression } = useAppSelector((state) => {
+    return state.mathExpressionReducer;
+  });
+  const { mathResult } = useAppSelector((state) => {
+    return state.mathResultReducer;
+  });
   const [isExpressionOutOfBounds, setExpressionBoundsStatus] =
     useState<boolean>(false);
-  const [result, setResult] = useState<string>('');
   const dispatch = useAppDispatch();
   const [bracketsCounter, setBracketsCounter] = useState<bracketsState>({
     open: 0,
@@ -23,7 +35,7 @@ function Calculator(): JSX.Element {
   const handleLayout = (event: LayoutChangeEvent) => {
     const { width } = event.nativeEvent.layout;
     const windowWidth = Dimensions.get('window').width;
-    const SAFE_PIXEL_SPACING = 15;
+    const SAFE_PIXEL_SPACING = 48;
 
     if (width + SAFE_PIXEL_SPACING > windowWidth) {
       setExpressionBoundsStatus(true);
@@ -36,7 +48,7 @@ function Calculator(): JSX.Element {
       if (DISPLAYED_KEY_CUPS.includes(key)) {
         const lastChar = mathExpression.slice(-1);
 
-        if (!/[\d|(|)+|-|.]/.test(key) && !/[\d|(|)|+|-]/.test(lastChar)) {
+        if (!/[\d|(|)+|.|-]/.test(key) && !/[\d|(|)|+|-]/.test(lastChar)) {
           return;
         }
         if (lastChar === '.' && key === '.') return;
@@ -63,9 +75,7 @@ function Calculator(): JSX.Element {
 
         if (isExpressionOutOfBounds) return;
 
-        setMathExpression((prev) => {
-          return prev + key;
-        });
+        dispatch(changeMathExpression(mathExpression + key));
       }
       if (UN_DISPLAYED_KEY_CUPS) {
         const lastChar = mathExpression.slice(-1);
@@ -81,14 +91,13 @@ function Calculator(): JSX.Element {
               return { ...prev, close: prev.close - 1 };
             });
           }
-          setMathExpression((prev) => {
-            return prev.slice(0, -1);
-          });
+          dispatch(removeMathResult());
+          dispatch(changeMathExpression(mathExpression.slice(0, -1)));
         }
         if (key === 'Ac' && mathExpression) {
           setBracketsCounter({ open: 0, close: 0 });
-          setMathExpression('');
-          setResult('');
+          dispatch(removeMathExpression());
+          dispatch(removeMathResult());
         }
         if (key === '±') {
           const re = /(-\d+)|(\+\d+)|(\d+)/g;
@@ -109,19 +118,21 @@ function Calculator(): JSX.Element {
             } else {
               lastStr = lastStr.replace(/-/, '+');
             }
-            setMathExpression((prev) => {
-              return prev.replace(match[match.length - 1], lastStr);
-            });
+            dispatch(
+              changeMathExpression(
+                mathExpression.replace(match[match.length - 1], lastStr)
+              )
+            );
           }
         }
 
         if (key === '=') {
           const mathExecuterResult = mathExecuter();
-          const mathResult = mathExecuterResult(mathExpression);
+          const result = mathExecuterResult(mathExpression);
 
-          if (mathResult) {
-            setResult(mathResult);
-            dispatch(addOperation(`${mathExpression} = ${mathResult}`));
+          if (result) {
+            dispatch(changeMathResult(result));
+            dispatch(addOperation(`${mathExpression} = ${result}`));
           }
         }
       }
@@ -132,7 +143,7 @@ function Calculator(): JSX.Element {
       <Display
         handleLayout={handleLayout}
         expression={mathExpression}
-        result={result}
+        result={mathResult}
       />
       <Keypad handleSetMathExpression={handleSetMathExpression} />
     </Wrapper>

@@ -26,8 +26,12 @@ export const operationListSlice = createSlice({
         return item.id !== action.payload;
       });
     },
+    clearOperationList(state) {
+      state.operationList = [];
+    },
   },
 });
 
 export default operationListSlice.reducer;
-export const { addOperation, removeOperation } = operationListSlice.actions;
+export const { addOperation, removeOperation, clearOperationList } =
+  operationListSlice.actions;

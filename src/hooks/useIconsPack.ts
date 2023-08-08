@@ -13,6 +13,9 @@ import {
   SettingsBlack,
   SettingsLight,
 } from '../assets';
+import { removeMathExpression } from '../reducers/mathExpressionReducer';
+import { removeMathResult } from '../reducers/mathResultReducer';
+import { clearOperationList } from '../reducers/operationListReducer';
 import type Icons from './types';
 
 const { changeTheme } = themeSlice.actions;
@@ -47,15 +50,13 @@ const useIconsPack = (theme: string) => {
     },
   ];
   const historyIconPackLight: Icons[] = [
-    {
-      Icon: MoonBlack,
-      onPress: handleThemeChange,
-      id: '3',
-    },
+    { Icon: MoonBlack, onPress: handleThemeChange, id: '3' },
     {
       Icon: BinBlack,
       onPress: () => {
-        return Alert.alert('bin');
+        dispatch(removeMathExpression());
+        dispatch(removeMathResult());
+        dispatch(clearOperationList());
       },
       id: '5ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     },
