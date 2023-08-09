@@ -15,10 +15,10 @@ import {
 } from '../../reducers/mathResultReducer';
 import { addOperation } from '../../reducers/operationListReducer';
 import Wrapper from './styles';
-import type bracketsState from './types';
+import type BracketsState from './types';
 
 function Calculator(): JSX.Element {
-  const { mathExpression } = useAppSelector((state) => {
+  let { mathExpression } = useAppSelector((state) => {
     return state.mathExpressionReducer;
   });
   const { mathResult } = useAppSelector((state) => {
@@ -27,11 +27,19 @@ function Calculator(): JSX.Element {
   const [isExpressionOutOfBounds, setExpressionBoundsStatus] =
     useState<boolean>(false);
   const dispatch = useAppDispatch();
-  const [bracketsCounter, setBracketsCounter] = useState<bracketsState>({
+  const [bracketsCounter, setBracketsCounter] = useState<BracketsState>({
     open: 0,
     close: 0,
   });
 
+  const isResultEqualsExpression = (
+    preloadResult: string,
+    preloadExpression: string
+  ) => {
+    if (preloadResult === preloadExpression) return true;
+
+    return false;
+  };
   const handleLayout = (event: LayoutChangeEvent) => {
     const { width } = event.nativeEvent.layout;
     const windowWidth = Dimensions.get('window').width;
@@ -66,12 +74,18 @@ function Calculator(): JSX.Element {
         if (key === ')' && lastChar === '(') return;
         if (key === '(') {
           setBracketsCounter((prev) => {
-            return { ...prev, open: prev.open + 1 };
+            return {
+              ...prev,
+              open: prev.open + 1,
+            };
           });
         }
         if (key === ')') {
           setBracketsCounter((prev) => {
-            return { ...prev, close: prev.close + 1 };
+            return {
+              ...prev,
+              close: prev.close + 1,
+            };
           });
         }
 
@@ -85,19 +99,28 @@ function Calculator(): JSX.Element {
         if (key === '⌫' && mathExpression) {
           if (lastChar === '(') {
             setBracketsCounter((prev) => {
-              return { ...prev, open: prev.open - 1 };
+              return {
+                ...prev,
+                open: prev.open - 1,
+              };
             });
           }
           if (lastChar === ')') {
             setBracketsCounter((prev) => {
-              return { ...prev, close: prev.close - 1 };
+              return {
+                ...prev,
+                close: prev.close - 1,
+              };
             });
           }
           dispatch(removeMathResult());
           dispatch(changeMathExpression(mathExpression.slice(0, -1)));
         }
         if (key === 'Ac' && mathExpression) {
-          setBracketsCounter({ open: 0, close: 0 });
+          setBracketsCounter({
+            open: 0,
+            close: 0,
+          });
           dispatch(removeMathExpression());
           dispatch(removeMathResult());
         }
@@ -130,11 +153,26 @@ function Calculator(): JSX.Element {
 
         if (key === '=') {
           const mathExecuterResult = mathExecuter();
-          const result = mathExecuterResult(mathExpression);
 
+          if (/(?<!.+)(\d+[|*|+|-])(?!.+)/g.test(mathExpression)) {
+            mathExpression = mathExpression.slice(0, mathExpression.length - 1);
+            console.log(mathExpression);
+          }
+
+          const result = mathExecuterResult(mathExpression);
           if (result) {
-            dispatch(changeMathResult(result));
-            dispatch(addOperation({ mathExpression, mathResult: result }));
+            if (!Number.isFinite(Number(result))) {
+              Alert.alert('You should not divide by 0');
+            } else {
+              if (isResultEqualsExpression(mathExpression, result)) return;
+              dispatch(changeMathResult(result));
+              dispatch(
+                addOperation({
+                  mathExpression,
+                  mathResult: result,
+                })
+              );
+            }
           }
         }
       }

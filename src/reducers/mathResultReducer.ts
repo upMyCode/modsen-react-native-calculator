@@ -4,7 +4,9 @@ interface MathResult {
   mathResult: string;
 }
 
-const initialState: MathResult = { mathResult: '' };
+const initialState: MathResult = {
+  mathResult: '',
+};
 
 export const mathResultSlice = createSlice({
   name: 'mathResult',

@@ -4,7 +4,9 @@ interface MathExpression {
   mathExpression: string;
 }
 
-const initialState: MathExpression = { mathExpression: '' };
+const initialState: MathExpression = {
+  mathExpression: '',
+};
 
 export const mathExpressionSlice = createSlice({
   name: 'mathExpression',

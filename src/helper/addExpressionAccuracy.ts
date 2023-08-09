@@ -1,5 +1,5 @@
 const addAccuracyForExpression = (expression: string, accuracy: number) => {
-  expression = expression.replace(/(\d+)(?:\+|\-|\*|\/)/g, (_, a: string) => {
+  expression = expression.replace(/(\d+)(?:\+|-|\*|\/)/g, (_, a: string) => {
     return a;
   });
 

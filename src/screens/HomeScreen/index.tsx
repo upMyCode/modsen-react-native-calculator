@@ -8,7 +8,7 @@ import Wrapper from './styles';
 import type Icons from './types';
 
 function HomeScreen(): JSX.Element {
-  const { theme } = useAppSelector(state => {
+  const { theme } = useAppSelector((state) => {
     return state.themeReducer;
   });
   const { homeIconPackLight, homeIconPackDark } = useIconsPack(theme);

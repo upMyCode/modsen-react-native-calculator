@@ -15,7 +15,9 @@ interface Payload {
   mathExpression: string;
 }
 let BASE_ID = 0;
-const initialState: OperationList = { operationList: [] };
+const initialState: OperationList = {
+  operationList: [],
+};
 
 export const operationListSlice = createSlice({
   name: 'operationList',

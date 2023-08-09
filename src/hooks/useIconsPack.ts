@@ -1,6 +1,5 @@
 import { useNavigation } from '@react-navigation/core';
 import type { StackNavigationProp } from '@react-navigation/stack';
-import { Alert } from 'react-native';
 import { themeSlice } from 'src/reducers/themeReducer';
 import { useAppDispatch } from 'src/store/hooks';
 
@@ -44,13 +43,19 @@ const useIconsPack = (theme: string) => {
     {
       Icon: BinLight,
       onPress: () => {
-        return Alert.alert('bin');
+        dispatch(removeMathExpression());
+        dispatch(removeMathResult());
+        dispatch(clearOperationList());
       },
       id: '4ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     },
   ];
   const historyIconPackLight: Icons[] = [
-    { Icon: MoonBlack, onPress: handleThemeChange, id: '3' },
+    {
+      Icon: MoonBlack,
+      onPress: handleThemeChange,
+      id: '3',
+    },
     {
       Icon: BinBlack,
       onPress: () => {

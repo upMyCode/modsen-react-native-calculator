@@ -31,8 +31,8 @@ const mathExecuter = () => {
       for (let i = 0; i < length; i += 1) {
         expression = expression.replace(
           /(\d+(?:\.\d+)?)(\/|\*)(-?\d+(?:\.\d+)?)/,
-          (_, a, oper, b) => {
-            return math(a, oper, b);
+          (_: string, a: string, oper: string, b: string) => {
+            return math(a, oper, b).toString();
           }
         );
 
@@ -49,8 +49,8 @@ const mathExecuter = () => {
       for (let i = 0; i < length; i += 1) {
         expression = expression.replace(
           /(\d+(?:\.\d+)?)(%)(-?\d+(?:\.\d+)?)/,
-          (_, a, oper, b) => {
-            return math(a, oper, b);
+          (_: string, a: string, oper: string, b: string) => {
+            return math(a, oper, b).toString();
           }
         );
 
@@ -66,8 +66,8 @@ const mathExecuter = () => {
       for (let i = 0; i < length; i += 1) {
         expression = expression.replace(
           /((?:^-)?\d+(?:\.\d+)?)(\+|-)(\d+(?:\.\d+)?)/,
-          (_, a, oper, b) => {
-            return math(a, oper, b);
+          (_: string, a: string, oper: string, b: string) => {
+            return math(a, oper, b).toString();
           }
         );
 
@@ -89,12 +89,17 @@ const mathExecuter = () => {
     const countCloseBrackets = (mathExpression.match(/\)/g) || []).length;
 
     if (countOpenBrackets !== countCloseBrackets) {
-      return { error: 'Brackets are unmatched', bracketsFailedStatus: true };
+      return {
+        error: 'Brackets are unmatched',
+        bracketsFailedStatus: true,
+      };
     }
 
-    return { bracketsFailedStatus: false };
+    return {
+      bracketsFailedStatus: false,
+    };
   }
-  function removeBrackets(mathExpression: string) {
+  function removeBrackets(mathExpression: string): string {
     mathExpression = autoCorrectExpression(mathExpression);
 
     const index = mathExpression.indexOf('(');
@@ -118,6 +123,8 @@ const mathExecuter = () => {
         );
       }
     }
+
+    return '';
   }
   function executeMath(mathExpression: string) {
     const isBracketsFailed = throwUnmatchedBrackets(mathExpression);
@@ -136,18 +143,22 @@ const mathExecuter = () => {
     return mathResult;
   }
   function getMathFn() {
-    const localMath = {
-      '+': (a, b) => {
+    interface LocalMath {
+      [key: string]: (a: string, b: string) => number;
+    }
+
+    const localMath: LocalMath = {
+      '+': (a: string, b: string) => {
         let result = 0;
 
-        calculator.operation(display, Number(a), Number(b), '+');
+        calculator.operation(display, a, b, '+');
         result = display.getIntermediateResult();
         display.resetIntermediateResult();
 
         return result;
       },
-      '-': (a, b) => {
-        let result = 0n;
+      '-': (a: string, b: string) => {
+        let result = 0;
 
         calculator.operation(display, a, b, '-');
         result = display.getIntermediateResult();
@@ -155,7 +166,7 @@ const mathExecuter = () => {
 
         return result;
       },
-      '*': (a, b) => {
+      '*': (a: string, b: string) => {
         let result = 0;
 
         calculator.operation(display, a, b, '*');
@@ -164,7 +175,7 @@ const mathExecuter = () => {
 
         return result;
       },
-      '/': (a, b) => {
+      '/': (a: string, b: string) => {
         let result = 0;
 
         calculator.operation(display, a, b, '/');
@@ -173,7 +184,7 @@ const mathExecuter = () => {
 
         return result;
       },
-      '%': (a, b) => {
+      '%': (a: string, b: string) => {
         let result = 0;
 
         calculator.operation(display, a, b, '%');
@@ -184,7 +195,7 @@ const mathExecuter = () => {
       },
     };
 
-    return function math(a, operation, b) {
+    return (a: string, operation: string, b: string) => {
       return localMath[operation](a, b);
     };
   }

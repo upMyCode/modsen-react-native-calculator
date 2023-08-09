@@ -1,6 +1,6 @@
-interface bracketsState {
+interface BracketsState {
   open: number;
   close: number;
 }
 
-export default bracketsState;
+export default BracketsState;

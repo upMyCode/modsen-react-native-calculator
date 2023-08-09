@@ -49,16 +49,25 @@ module.exports = {
   },
   rules: {
     'no-use-before-define': 'off',
+    'max-classes-per-file': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': 'off',
+    'consistent-return': 'off',
     'react/jsx-filename-extension': 'off',
     'react/prop-types': 'off',
     'comma-dangle': 'off',
     'padded-blocks': 'off',
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+      },
+    ],
     'react-native/no-unused-styles': 2,
     'react-native/split-platform-components': 2,
     'react-native/no-inline-styles': 2,
     'react-native/no-color-literals': 2,
-    'react-native/no-raw-text': 2,
     'react-native/no-single-element-style-arrays': 2,
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
@@ -68,7 +77,8 @@ module.exports = {
     'no-confusing-arrow': 0,
     'arrow-body-style': ['error', 'always'],
     'no-param-reassign': 0,
-    'object-curly-newline': ['error', 'never'],
+    'react-native/no-raw-text': 'off',
+    'object-curly-newline': 'off',
     'react/no-unstable-nested-components': [
       'off',
       {

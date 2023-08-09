@@ -21,7 +21,11 @@ function Header({ title, icons }: HeaderProps): JSX.Element {
 
     return (
       <ManageButton onPress={item.onPress}>
-        <ManageIcon source={{ uri: DEFAULT_IMAGE }} />
+        <ManageIcon
+          source={{
+            uri: DEFAULT_IMAGE,
+          }}
+        />
       </ManageButton>
     );
   };
