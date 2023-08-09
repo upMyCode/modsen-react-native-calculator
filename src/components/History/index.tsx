@@ -1,10 +1,10 @@
 import React from 'react';
-import { FlatList, Image } from 'react-native';
+import { FlatList, Image, View } from 'react-native';
 import { RemoveBlack, RemoveLight } from 'src/assets';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
 import { removeOperation } from '../../reducers/operationListReducer';
-import { Item, ItemButton, Items, ItemText, Wrapper } from './styles';
+import { Item, ItemButton, ItemText, Wrapper } from './styles';
 
 function History(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ function History(): JSX.Element {
 
   return (
     <Wrapper>
-      <Items>
+      <View>
         <FlatList
           data={operationList}
           keyExtractor={({ id }) => {
@@ -27,15 +27,17 @@ function History(): JSX.Element {
           renderItem={({ item }) => {
             return (
               <Item>
-                <ItemText theme={theme}>{item.context}</ItemText>
+                <ItemText theme={theme}>
+                  {`${item.mathExpression} = ${item.mathResult}`}
+                </ItemText>
                 <ItemButton
                   onPress={() => {
                     return dispatch(removeOperation(item.id));
                   }}
                 >
                   <Image
-                    width={24}
-                    height={24}
+                    width={7}
+                    height={7}
                     source={theme === 'light' ? RemoveLight : RemoveBlack}
                   />
                 </ItemButton>
@@ -43,7 +45,7 @@ function History(): JSX.Element {
             );
           }}
         />
-      </Items>
+      </View>
     </Wrapper>
   );
 }

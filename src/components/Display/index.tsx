@@ -1,8 +1,7 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { useAppSelector } from 'src/store/hooks';
 
-import { Expression, Result, Wrapper } from './styles';
+import { Expression, MathExpression, Result, Wrapper } from './styles';
 import type { DisplayProps } from './types';
 
 function Display({
@@ -23,11 +22,12 @@ function Display({
       return <Expression type="operator">{elem}</Expression>;
     });
   };
+
   return (
     <Wrapper>
-      <Text onLayout={handleLayout}>
+      <MathExpression onLayout={handleLayout}>
         {reconstructionExpression(expression)}
-      </Text>
+      </MathExpression>
       {result && <Result theme={theme}>{`=${result}`}</Result>}
     </Wrapper>
   );

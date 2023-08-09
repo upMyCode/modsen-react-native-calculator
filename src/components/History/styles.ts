@@ -13,8 +13,8 @@ const Wrapper = styled.View`
 `;
 
 const ItemText = styled.Text<ItemTextProps>`
-  font-style: 'Poppins-Medium';
-  font-size: 32px;
+  font-style: Poppins-Medium;
+  font-size: 22px;
   line-height: 48px;
   color: ${({ theme }) => {
     return theme === 'light'
@@ -25,17 +25,16 @@ const ItemText = styled.Text<ItemTextProps>`
 
 const Item = styled.View`
   display: flex;
+  width: 320px;
+  margin-left: 33px;
   flex-direction: row;
+  justify-content: space-between;
 `;
-
 const ItemButton = styled.Pressable`
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  margin-left: 29px;
+  margin-left: 14px;
 `;
 
-const Items = styled.ScrollView.attrs(() => {
-  return { contentContainerStyle: { alignItems: 'flex-end' } };
-})``;
-export { Item, ItemButton, Items, ItemText, Wrapper };
+export { Item, ItemButton, ItemText, Wrapper };

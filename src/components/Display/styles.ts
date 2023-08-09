@@ -25,14 +25,17 @@ const Expression = styled.Text<ExpressionProps>`
   line-height: 36px;
   font-size: 24px;
 `;
-
+const MathExpression = styled.Text`
+  margin-right: 33px;
+`;
 const Result = styled.Text<ResultProps>`
   font-family: Poppins-Regular;
   line-height: 72px;
   font-size: 48px;
+  margin-right: 33px;
   color: ${({ theme }) => {
     return theme === 'light' ? '#424242' : '#FFFFFF';
   }};
 `;
 
-export { Expression, Result, Wrapper };
+export { Expression, MathExpression, Result, Wrapper };
