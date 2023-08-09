@@ -13,7 +13,7 @@ const Wrapper = styled.View`
 `;
 
 const ItemText = styled.Text<ItemTextProps>`
-  font-style: Poppins-Medium;
+  font-family: Poppins-Medium;
   font-size: 22px;
   line-height: 48px;
   color: ${({ theme }) => {
