@@ -18,7 +18,7 @@ import Wrapper from './styles';
 import type BracketsState from './types';
 
 function Calculator(): JSX.Element {
-  let { mathExpression } = useAppSelector((state) => {
+  const { mathExpression } = useAppSelector((state) => {
     return state.mathExpressionReducer;
   });
   const { mathResult } = useAppSelector((state) => {
@@ -154,14 +154,37 @@ function Calculator(): JSX.Element {
         if (key === '=') {
           const mathExecuterResult = mathExecuter();
 
-          if (/(?<!.+)(\d+[|*|+|-])(?!.+)/g.test(mathExpression)) {
-            mathExpression = mathExpression.slice(0, mathExpression.length - 1);
-            console.log(mathExpression);
+          if (/(?<!.+)(\d+[%|/|*|+|-])(?!.+)/g.test(mathExpression)) {
+            return;
           }
 
           const result = mathExecuterResult(mathExpression);
+
           if (result) {
-            if (!Number.isFinite(Number(result))) {
+            if (
+              /[A-Za-z]+/.test(result) &&
+              result !== 'Infinity' &&
+              result !== '-Infinity'
+            ) {
+              Alert.alert(
+                'Expression error',
+                'Please close all brackets and add correct expression',
+                [
+                  {
+                    text: 'Ok',
+                    onPress: () => {},
+                  },
+                  {
+                    text: 'Clear an expression',
+                    onPress: () => {
+                      dispatch(removeMathExpression());
+                    },
+                  },
+                ]
+              );
+              return;
+            }
+            if (result === 'Infinity' || result === '-Infinity') {
               Alert.alert('You should not divide by 0');
             } else {
               if (isResultEqualsExpression(mathExpression, result)) return;

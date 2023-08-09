@@ -22,6 +22,7 @@ function Display({
       return <Expression type="operator">{elem}</Expression>;
     });
   };
+
   return (
     <Wrapper>
       <MathExpression onLayout={handleLayout}>
