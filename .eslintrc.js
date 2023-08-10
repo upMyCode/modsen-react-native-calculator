@@ -65,6 +65,7 @@ module.exports = {
       },
     ],
     'react-native/no-unused-styles': 2,
+    'no-await-in-loop': 'off',
     'react-native/split-platform-components': 2,
     'react-native/no-inline-styles': 2,
     'react-native/no-color-literals': 2,

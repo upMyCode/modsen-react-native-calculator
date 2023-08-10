@@ -17,18 +17,28 @@ function Display({
 
     return expressionItems?.map((elem) => {
       if (/(\d+)/.test(elem)) {
-        return <Expression type="default">{elem}</Expression>;
+        return (
+          <Expression key={elem} type="default">
+            {elem}
+          </Expression>
+        );
       }
-      return <Expression type="operator">{elem}</Expression>;
+      return (
+        <Expression key={elem} type="operator">
+          {elem}
+        </Expression>
+      );
     });
   };
 
   return (
     <Wrapper>
-      <MathExpression onLayout={handleLayout}>
+      <MathExpression testID="mathExpression" onLayout={handleLayout}>
         {reconstructionExpression(expression)}
       </MathExpression>
-      {result && <Result theme={theme}>{`=${result}`}</Result>}
+      {result && (
+        <Result testID="mathResult" theme={theme}>{`=${result}`}</Result>
+      )}
     </Wrapper>
   );
 }
