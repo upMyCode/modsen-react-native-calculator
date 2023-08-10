@@ -11,7 +11,7 @@ const Wrapper = styled.View`
   flex-direction: column;
   align-items: flex-end;
   width: 100%;
-  min-height: 261px;
+  min-height: 241px;
   padding-top: 69px;
 `;
 
@@ -21,7 +21,7 @@ const Expression = styled.Text<ExpressionProps>`
       ? operatorDisplayTextColor
       : defaultDisplayTextColor;
   }};
-  font-style: Poppins-Regular;
+  font-family: Poppins-Regular;
   line-height: 36px;
   font-size: 24px;
 `;

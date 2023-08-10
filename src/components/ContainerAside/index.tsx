@@ -10,7 +10,9 @@ import { KeypadItem } from 'root';
 import Theme from '../../context/ThemeContext';
 import type KeypadContainerTopProps from './types';
 
-function ContainerAside({ handleSetMathExpression }: KeypadContainerTopProps) {
+function ContainerAside({
+  handleSetMathExpression,
+}: KeypadContainerTopProps): JSX.Element {
   const {
     bgColorKeyCupsBlock6,
     textColorKeyCupsBlock6,

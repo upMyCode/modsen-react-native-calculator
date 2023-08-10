@@ -6,7 +6,9 @@ import Theme from '../../context/ThemeContext';
 import Wrapper from './styles';
 import type KeypadContainerTopProps from './types';
 
-function ContainerTop({ handleSetMathExpression }: KeypadContainerTopProps) {
+function ContainerTop({
+  handleSetMathExpression,
+}: KeypadContainerTopProps): JSX.Element {
   const { bgColorKeyCupsBlock1, textColorKeyCupsBlock1 } = useContext(Theme);
   return (
     <Wrapper>

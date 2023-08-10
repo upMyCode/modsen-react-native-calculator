@@ -12,7 +12,7 @@ import type KeypadContainerTopProps from './types';
 
 function ContainerMiddleTop({
   handleSetMathExpression,
-}: KeypadContainerTopProps) {
+}: KeypadContainerTopProps): JSX.Element {
   const {
     bgColorKeyCupsBlock2,
     textColorKeyCupsBlock2,
