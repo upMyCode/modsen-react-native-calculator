@@ -69,12 +69,12 @@ describe('Test math functionality for calculator', () => {
     await element(by.id('=')).tap();
     await expect(element(by.id('mathResult'))).toHaveLabel('=-0.600');
   });
-
   it('should not execute by 0', async () => {
     await element(by.id('5')).tap();
     await element(by.id('/')).tap();
     await element(by.id('0')).tap();
-    element(by.label('OK')).atIndex(0).tap();
-    await waitFor(element(by.id('mathResult'))).toBeNotVisible();
+    await element(by.id('=')).tap();
+    await element(by.label('OK')).atIndex(0).tap();
+    await expect(element(by.id('mathResult'))).toBeNotVisible();
   });
 });
