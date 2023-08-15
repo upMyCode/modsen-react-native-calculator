@@ -27,10 +27,14 @@ function History(): JSX.Element {
           renderItem={({ item }) => {
             return (
               <Item>
-                <ItemText theme={theme}>
+                <ItemText
+                  theme={theme}
+                  testID={`TestHistoryItemContent-${item.id}`}
+                >
                   {`${item.mathExpression} = ${item.mathResult}`}
                 </ItemText>
                 <ItemButton
+                  testID={`TestHistoryItemButton-${item.id}`}
                   onPress={() => {
                     return dispatch(removeOperation(item.id));
                   }}

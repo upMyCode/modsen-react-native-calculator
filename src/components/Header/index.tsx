@@ -20,7 +20,10 @@ function Header({ title, icons }: HeaderProps): JSX.Element {
     const DEFAULT_IMAGE = Image.resolveAssetSource(item.Icon).uri;
 
     return (
-      <ManageButton onPress={item.onPress}>
+      <ManageButton
+        testID={`TestHeaderButton-${item.id}`}
+        onPress={item.onPress}
+      >
         <ManageIcon
           source={{
             uri: DEFAULT_IMAGE,
@@ -31,7 +34,9 @@ function Header({ title, icons }: HeaderProps): JSX.Element {
   };
   return (
     <Wrapper theme={theme}>
-      <Info theme={theme}>{title}</Info>
+      <Info testID={`TestHeaderTitle-${title}`} theme={theme}>
+        {title}
+      </Info>
       <ManageSettingsContainer>
         <FlatList
           horizontal
