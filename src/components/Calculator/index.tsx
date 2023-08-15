@@ -110,16 +110,23 @@ function Calculator(): JSX.Element {
         if (key === '±') {
           const { changedLastString, match } =
             changePlusToMinusAndViceVersa(mathExpression);
+          const mathExpressionArray = mathExpression.match(
+            /([+|-]?\d+(?:\.\d+))|([+|-]?\.\d+)|([+|-]?\d+)|[/|*|%]|([+|-]?[(|)])/g
+          );
 
-          if (match) {
-            dispatch(
-              changeMathExpression(
-                mathExpression.replace(
-                  match[match.length - 1],
-                  changedLastString
-                )
-              )
-            );
+          if (match && mathExpressionArray) {
+            const id = mathExpressionArray.lastIndexOf(match[match.length - 1]);
+
+            if (id !== -1) {
+              mathExpressionArray?.splice(id, 1, changedLastString);
+
+              const mathExpressionConvertedToString =
+                mathExpressionArray?.join('');
+
+              if (mathExpressionConvertedToString) {
+                dispatch(changeMathExpression(mathExpressionConvertedToString));
+              }
+            }
           }
         }
         if (key === '=') {
