@@ -3,11 +3,11 @@ import {
   KEY_CUPS_BLOCK_7,
   KEY_CUPS_BLOCK_8,
 } from 'constants/keyCups';
+import Theme from 'context/ThemeContext';
 import React, { useContext } from 'react';
 import { View } from 'react-native';
 import { KeypadItem } from 'root';
 
-import Theme from '../../context/ThemeContext';
 import type KeypadContainerTopProps from './types';
 
 function ContainerAside({

@@ -1,19 +1,20 @@
 import { DISPLAYED_KEY_CUPS, UN_DISPLAYED_KEY_CUPS } from 'constants/keyCups';
+import changePlusToMinusAndViceVersa from 'helpers/changePlusToMinusAndViceVersa';
+import handleAlertsForUncorrectMathResult from 'helpers/handleAlertsForUncorrectMathResult';
+import isPressedKeyInvalid from 'helpers/isPressedKeyInvalid';
+import isResultEqualsExpression from 'helpers/isResultEqualsExpression';
+import mathExecuter from 'helpers/mathExecuter';
 import React, { useState } from 'react';
 import { Alert, Dimensions, LayoutChangeEvent } from 'react-native';
-import { Display, Keypad } from 'root';
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-
-import mathExecuter from '../../helper/mathExecuter';
 import {
   changeMathExpression,
   removeMathExpression,
-} from '../../reducers/mathExpressionReducer';
-import {
-  changeMathResult,
-  removeMathResult,
-} from '../../reducers/mathResultReducer';
-import { addOperation } from '../../reducers/operationListReducer';
+} from 'reducers/mathExpressionReducer';
+import { changeMathResult, removeMathResult } from 'reducers/mathResultReducer';
+import { addOperation } from 'reducers/operationListReducer';
+import { Display, Keypad } from 'root';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+
 import Wrapper from './styles';
 import type BracketsState from './types';
 
@@ -32,14 +33,6 @@ function Calculator(): JSX.Element {
     close: 0,
   });
 
-  const isResultEqualsExpression = (
-    preloadResult: string,
-    preloadExpression: string
-  ) => {
-    if (preloadResult === preloadExpression) return true;
-
-    return false;
-  };
   const handleLayout = (event: LayoutChangeEvent) => {
     const { width } = event.nativeEvent.layout;
     const windowWidth = Dimensions.get('window').width;
@@ -56,22 +49,13 @@ function Calculator(): JSX.Element {
     if (key) {
       if (DISPLAYED_KEY_CUPS.includes(key)) {
         const lastChar = mathExpression.slice(-1);
+        const keyInvalidStatus = isPressedKeyInvalid(
+          key,
+          lastChar,
+          bracketsCounter
+        );
 
-        if (!/[\d|(|)+|.|-]/.test(key) && !/[\d|(|)|+|-]/.test(lastChar)) {
-          return;
-        }
-        if (lastChar === '.' && key === '.') return;
-        if (lastChar === '+' && key === '+') return;
-        if (lastChar === '-' && key === '-') return;
-        if (/[+|-]/.test(lastChar) && /[*|/]/.test(key)) return;
-        if (lastChar === '(' && /[*|/|%]/.test(key)) return;
-        if (/[*|/|+|-]/.test(lastChar) && key === ')') return;
-        if (lastChar === ')' && /\d+/.test(key)) return;
-        if (key === ')' && bracketsCounter.close >= bracketsCounter.open) {
-          return;
-        }
-        if (key === '(' && /[\d]/.test(lastChar)) return;
-        if (key === ')' && lastChar === '(') return;
+        if (keyInvalidStatus) return;
         if (key === '(') {
           setBracketsCounter((prev) => {
             return {
@@ -88,7 +72,6 @@ function Calculator(): JSX.Element {
             };
           });
         }
-
         if (isExpressionOutOfBounds) return;
 
         dispatch(changeMathExpression(mathExpression + key));
@@ -125,32 +108,20 @@ function Calculator(): JSX.Element {
           dispatch(removeMathResult());
         }
         if (key === '±') {
-          const re = /(-\d+)|(\+\d+)|(\d+)/g;
-          const match = mathExpression.match(re);
+          const { changedLastString, match } =
+            changePlusToMinusAndViceVersa(mathExpression);
 
           if (match) {
-            let lastStr = match[match.length - 1];
-            const firstSymb = lastStr[0];
-
-            if (firstSymb === '+' || /\d/.test(firstSymb)) {
-              if (firstSymb === '+') {
-                lastStr = lastStr.replace(/\+/, '-');
-              } else {
-                const lastStrArr = lastStr.split('');
-                lastStrArr.unshift('-');
-                lastStr = lastStrArr.join('');
-              }
-            } else {
-              lastStr = lastStr.replace(/-/, '+');
-            }
             dispatch(
               changeMathExpression(
-                mathExpression.replace(match[match.length - 1], lastStr)
+                mathExpression.replace(
+                  match[match.length - 1],
+                  changedLastString
+                )
               )
             );
           }
         }
-
         if (key === '=') {
           const mathExecuterResult = mathExecuter();
 
@@ -161,41 +132,21 @@ function Calculator(): JSX.Element {
           const result = mathExecuterResult(mathExpression);
 
           if (result) {
-            if (
-              /[A-Za-z]+/.test(result) &&
-              result !== 'Infinity' &&
-              result !== '-Infinity'
-            ) {
-              Alert.alert(
-                'Expression error',
-                'Please close all brackets and add correct expression',
-                [
-                  {
-                    text: 'Ok',
-                    onPress: () => {},
-                  },
-                  {
-                    text: 'Clear an expression',
-                    onPress: () => {
-                      dispatch(removeMathExpression());
-                    },
-                  },
-                ]
-              );
-              return;
-            }
-            if (result === 'Infinity' || result === '-Infinity') {
-              Alert.alert('You should not divide by 0');
-            } else {
-              if (isResultEqualsExpression(mathExpression, result)) return;
-              dispatch(changeMathResult(result));
-              dispatch(
-                addOperation({
-                  mathExpression,
-                  mathResult: result,
-                })
-              );
-            }
+            const isAlertAppeared = handleAlertsForUncorrectMathResult(
+              dispatch,
+              result
+            );
+
+            if (isAlertAppeared) return;
+            if (isResultEqualsExpression(mathExpression, result)) return;
+
+            dispatch(changeMathResult(result));
+            dispatch(
+              addOperation({
+                mathExpression,
+                mathResult: result,
+              })
+            );
           }
         }
       }

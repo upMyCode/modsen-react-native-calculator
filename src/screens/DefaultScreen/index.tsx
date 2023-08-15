@@ -1,9 +1,9 @@
+import Theme from 'context/ThemeContext';
 import React from 'react';
 import { Header } from 'src/index';
 import { useAppSelector } from 'src/store/hooks';
 import { themeColorDark, themeColorLight } from 'theme/buttonTheme';
 
-import Theme from '../../context/ThemeContext';
 import Wrapper from './styles';
 import type { DefaultScreenProps } from './types';
 

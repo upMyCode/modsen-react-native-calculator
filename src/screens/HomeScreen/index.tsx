@@ -1,8 +1,8 @@
+import useIconsPack from 'hooks/useIconsPack';
 import React, { useEffect, useState } from 'react';
 import { Calculator } from 'root';
 import { useAppSelector } from 'src/store/hooks';
 
-import useIconsPack from '../../hooks/useIconsPack';
 import DefaultScreen from '../DefaultScreen';
 import Wrapper from './styles';
 import type Icons from './types';
