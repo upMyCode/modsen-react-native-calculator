@@ -1,9 +1,9 @@
 # ModsenCalculator
 
-![App](https://github.com/upMyCode/modsen-react-native-calculator/blob/develop/src/assets/img/screen_1.png).
-![App](https://github.com/upMyCode/modsen-react-native-calculator/blob/develop/src/assets/img/screen_2.png).
-![App](https://github.com/upMyCode/modsen-react-native-calculator/blob/develop/src/assets/img/screen_3.png).
-![App](https://github.com/upMyCode/modsen-react-native-calculator/blob/develop/src/assets/img/screen_4.png).
+![App](https://github.com/upMyCode/modsen-react-native-calculator/blob/main/develop/src/assets/img/screen_1.png).
+![App](https://github.com/upMyCode/modsen-react-native-calculator/blob/main/develop/src/assets/img/screen_2.png).
+![App](https://github.com/upMyCode/modsen-react-native-calculator/blob/main/develop/src/assets/img/screen_3.png).
+![App](https://github.com/upMyCode/modsen-react-native-calculator/blob/main/develop/src/assets/img/screen_4.png).
 
 ## Step 1: Start the Metro Server
 
