@@ -2,8 +2,8 @@ import React from 'react';
 import type { ListRenderItemInfo } from 'react-native';
 import { FlatList } from 'react-native';
 import { Button } from 'root';
+import type { KEYCUP } from 'types/keyCups';
 
-import type { KEYCUP } from '../../types/keyCups';
 import {
   KeyCupListItem,
   KeyCupListItemNumbers,

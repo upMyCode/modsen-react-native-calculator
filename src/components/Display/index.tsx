@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'react-native-uuid';
 import { useAppSelector } from 'src/store/hooks';
 
 import { Expression, MathExpression, Result, Wrapper } from './styles';
@@ -16,15 +17,17 @@ function Display({
     const expressionItems = currentExpression.match(/([\d]+)|([+*-/%()]+)/g);
 
     return expressionItems?.map((elem) => {
+      const KEY_ID = uuid.v4();
+
       if (/(\d+)/.test(elem)) {
         return (
-          <Expression key={elem} type="default">
+          <Expression key={KEY_ID.toString()} type="default">
             {elem}
           </Expression>
         );
       }
       return (
-        <Expression key={elem} type="operator">
+        <Expression key={KEY_ID.toString()} type="operator">
           {elem}
         </Expression>
       );

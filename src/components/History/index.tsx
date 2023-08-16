@@ -1,9 +1,9 @@
 import React from 'react';
 import { FlatList, Image, View } from 'react-native';
+import { removeOperation } from 'reducers/operationListReducer';
 import { RemoveBlack, RemoveLight } from 'src/assets';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
-import { removeOperation } from '../../reducers/operationListReducer';
 import { Item, ItemButton, ItemText, Wrapper } from './styles';
 
 function History(): JSX.Element {

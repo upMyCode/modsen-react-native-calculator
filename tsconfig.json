@@ -33,7 +33,11 @@
       "src/*": ["src/*"],
       "root": ["src/index"],
       "theme/*": ["src/theme/*"],
-      "hooks/*": ["src/hooks/*"]
+      "hooks/*": ["src/hooks/*"],
+      "reducers/*": ["src/reducers/*"],
+      "context/*": ["src/context/*"],
+      "helpers/*": ["src/helpers/*"],
+      "types/*": ["src/types/*"]
     }
   }
 }

@@ -21,6 +21,9 @@ const mathExecuter = () => {
       .replace(/(\/|\*)\+/g, '$1')
       .replace(/(?<!\d+)\.\d+/g, (_) => {
         return `0${_}`;
+      })
+      .replace(/%([+|-])(\d+)]/g, (_, operator, operand) => {
+        return `${operator}%${operand}`;
       });
   }
   function parseLinearMath(mathExpression: string) {

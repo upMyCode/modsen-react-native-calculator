@@ -1,9 +1,9 @@
 import { KEY_CUPS_BLOCK_9, KEY_CUPS_BLOCK_10 } from 'constants/keyCups';
+import Theme from 'context/ThemeContext';
 import React, { useContext } from 'react';
 import { View } from 'react-native';
 import { KeypadItem } from 'root';
 
-import Theme from '../../context/ThemeContext';
 import Wrapper from './styles';
 import type KeypadContainerTopProps from './types';
 

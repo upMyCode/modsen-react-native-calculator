@@ -3,10 +3,10 @@ import {
   KEY_CUPS_BLOCK_3,
   KEY_CUPS_BLOCK_4,
 } from 'constants/keyCups';
+import Theme from 'context/ThemeContext';
 import React, { useContext } from 'react';
 import { KeypadItem } from 'root';
 
-import Theme from '../../context/ThemeContext';
 import Wrapper from './styles';
 import type KeypadContainerTopProps from './types';
 
