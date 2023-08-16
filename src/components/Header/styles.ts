@@ -32,4 +32,8 @@ const ManageIcon = styled.Image`
   height: 32px;
 `;
 
-export { Info, ManageIcon, ManageSettingsContainer, Wrapper };
+const ManageButton = styled.Pressable`
+  margin-left: 18px;
+`;
+
+export { Info, ManageButton, ManageIcon, ManageSettingsContainer, Wrapper };

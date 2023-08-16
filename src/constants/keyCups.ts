@@ -1,70 +1,135 @@
 import { KeyCups } from '../types/keyCups';
 
 const KEY_CUPS_BLOCK_1: KeyCups = [
-  { title: '±', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f60' },
-  { title: '(', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f61' },
-  { title: ')', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f62' },
-  { title: '%', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63' },
+  {
+    title: '±',
+    id: '#±',
+  },
+  {
+    title: '(',
+    id: '#(',
+  },
+  {
+    title: ')',
+    id: '#)',
+  },
+  {
+    title: '%',
+    id: '#%',
+  },
 ];
 const KEY_CUPS_BLOCK_2: KeyCups = [
-  { title: 'Ac', id: '3ac68afc-c605-48d3-a4f8-fbd71aa97f64' },
+  {
+    title: 'Ac',
+    id: '#Ac',
+  },
 ];
 const KEY_CUPS_BLOCK_3: KeyCups = [
-  { title: '⌫', id: '3ac68afc-c605-48d3-a4f8-fbd81aa97f65' },
+  {
+    title: '⌫',
+    id: '#⌫',
+  },
 ];
 const KEY_CUPS_BLOCK_4: KeyCups = [
-  { title: '/', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f66' },
+  {
+    title: '/',
+    id: '#/',
+  },
 ];
 const KEY_CUPS_BLOCK_5: KeyCups = [
-  { title: '7', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f67' },
-  { title: '8', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f68' },
-  { title: '9', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f69' },
-  { title: '4', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f70' },
-  { title: '5', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f71' },
-  { title: '6', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f72' },
-  { title: '1', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f73' },
-  { title: '2', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f74' },
-  { title: '3', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f75' },
+  {
+    title: '7',
+    id: '#7',
+  },
+  {
+    title: '8',
+    id: '#8',
+  },
+  {
+    title: '9',
+    id: '#9',
+  },
+  {
+    title: '4',
+    id: '#4',
+  },
+  {
+    title: '5',
+    id: '#5',
+  },
+  {
+    title: '6',
+    id: '#6',
+  },
+  {
+    title: '1',
+    id: '#1',
+  },
+  {
+    title: '2',
+    id: '#2',
+  },
+  {
+    title: '3',
+    id: '#3',
+  },
 ];
 const KEY_CUPS_BLOCK_6: KeyCups = [
-  { title: '*', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f76' },
-  { title: '-', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f99' },
+  {
+    title: '*',
+    id: '#*',
+  },
+  {
+    title: '-',
+    id: '#-',
+  },
 ];
 const KEY_CUPS_BLOCK_7: KeyCups = [
-  { title: '+', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f77' },
+  {
+    title: '+',
+    id: '#+',
+  },
 ];
 const KEY_CUPS_BLOCK_8: KeyCups = [
-  { title: '=', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f78' },
+  {
+    title: '=',
+    id: '#=',
+  },
 ];
 const KEY_CUPS_BLOCK_9: KeyCups = [
-  { title: '0', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f79' },
+  {
+    title: '0',
+    id: '#0',
+  },
 ];
 const KEY_CUPS_BLOCK_10: KeyCups = [
-  { title: '.', id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f80' },
+  {
+    title: '.',
+    id: '#.',
+  },
 ];
 const DISPLAYED_KEY_CUPS: string[] = [
   '7',
-  '8',
-  '9',
-  '4',
-  '5',
-  '6',
   '1',
+  '0',
   '2',
   '3',
-  '0',
+  '%',
+  '8',
+  '*',
+  '9',
+  '4',
+  '/',
+  '(',
+  '5',
+  '.',
+  '6',
+  ')',
   '+',
   '-',
-  '%',
-  '(',
-  ')',
-  '.',
-  '=',
-  '/',
-  '*',
 ];
 
-const UN_DISPLAYED_KEY_CUPS: string[] = ['Ac', '⌫', '±'];
+const UN_DISPLAYED_KEY_CUPS: string[] = ['Ac', '⌫', '±', '='];
 
 export {
   DISPLAYED_KEY_CUPS,

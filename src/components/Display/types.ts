@@ -1,9 +1,17 @@
+import type { LayoutChangeEvent } from 'react-native';
+
 interface DisplayProps {
   expression: string;
+  result: string;
+  handleLayout: (event: LayoutChangeEvent) => void;
 }
 
 interface ExpressionProps {
   type: string;
 }
 
-export type { DisplayProps, ExpressionProps };
+interface ResultProps {
+  theme: string;
+}
+
+export type { DisplayProps, ExpressionProps, ResultProps };

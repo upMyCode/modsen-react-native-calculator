@@ -24,7 +24,7 @@ function HistoryScreen(): JSX.Element {
     }
   }, [theme]);
   return (
-    <Wrapper>
+    <Wrapper testID="TestHistoryScreen">
       <DefaultScreen title="History" icons={themePack}>
         <History />
       </DefaultScreen>

@@ -15,6 +15,7 @@ function Button({
 }: ButtonProps): JSX.Element {
   return (
     <CalculatorButton
+      testID={title}
       onPress={onPress}
       bgColor={bgColor}
       width={width}
