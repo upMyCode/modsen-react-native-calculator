@@ -1,4 +1,4 @@
-import type { KeyCups } from '../../types/keyCups';
+import type { KeyCups } from 'types/keyCups';
 
 interface KeypadItemProps {
   data: KeyCups;

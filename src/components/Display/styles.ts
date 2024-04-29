@@ -4,14 +4,14 @@ import {
   operatorDisplayTextColor,
 } from 'theme/buttonTheme';
 
-import type { ExpressionProps } from './types';
+import type { ExpressionProps, ResultProps } from './types';
 
 const Wrapper = styled.View`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
   width: 100%;
-  min-height: 261px;
+  min-height: 241px;
   padding-top: 69px;
 `;
 
@@ -21,9 +21,21 @@ const Expression = styled.Text<ExpressionProps>`
       ? operatorDisplayTextColor
       : defaultDisplayTextColor;
   }};
-  font-style: Poppins-Regular;
+  font-family: Poppins-Regular;
   line-height: 36px;
   font-size: 24px;
 `;
+const MathExpression = styled.Text`
+  margin-right: 33px;
+`;
+const Result = styled.Text<ResultProps>`
+  font-family: Poppins-Regular;
+  line-height: 72px;
+  font-size: 48px;
+  margin-right: 33px;
+  color: ${({ theme }) => {
+    return theme === 'light' ? '#424242' : '#FFFFFF';
+  }};
+`;
 
-export { Expression, Wrapper };
+export { Expression, MathExpression, Result, Wrapper };
